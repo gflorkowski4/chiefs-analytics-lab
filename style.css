@@ -66,6 +66,7 @@ nav {
   border-radius: 10px;
   padding: 22px;
   max-width: 480px;
+  margin: 24px auto;
 }
 .card h2 {
   margin: 0 0 6px;
