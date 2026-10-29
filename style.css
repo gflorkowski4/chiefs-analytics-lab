@@ -92,6 +92,12 @@ nav {
   color: #ffb81c;
 }
 
+.tools {
+  max-width: 1080px;
+  margin: var(--space-2xl) auto;
+  padding: 0 var(--space-lg);
+}
+
 .cards {
   display: flex;
   flex-wrap: wrap;
@@ -99,11 +105,12 @@ nav {
   justify-content: center;
   margin: var(--space-2xl) auto;
   max-width: 1080px;
+  
 }
 
 .card {
   background: #ffffff;
-  flex: 1 1 300px;
+  flex: 1 1 280px;
   border: 2px solid #e31837;
   border-radius: 10px;
   padding: var(--space-2xl);
