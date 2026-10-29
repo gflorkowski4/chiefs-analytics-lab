@@ -1,15 +1,20 @@
 :root {
-  --space-xs: 4px;
-  --space-sm: 8px;
+  --space-xs: 4px; /* Hairline gaps, icon nudges */
+  --space-sm: 8px; /* Text-to-label spacing */
   --space-md: 12px;
-  --space-lg: 16px;
+  --space-lg: 16px; /* Card padding, paragraph gaps */
   --space-xl: 20px;
-  --space-2xl: 24px;
+  --space-2xl: 24px; /* Card gap — between siblings */
   --space-3xl: 28px;
-  --space-4xl: 32px;
-  --space-5xl: 48px;
+  --space-4xl: 32px; /* Inside-section breathing room */
+  --space-5xl: 48px; /* Between sections — the biggest pause */
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 body {
   margin: 0;
   padding: 0;
@@ -98,7 +103,7 @@ nav {
 
 .card {
   background: #ffffff;
-  flex: 1 1 320px;
+  flex: 1 1 300px;
   border: 2px solid #e31837;
   border-radius: 10px;
   padding: var(--space-2xl);
@@ -133,12 +138,56 @@ nav {
   margin-top: var(--space-sm);
 }
 
+.how-it-works {
+  max-width: 1080px;
+  margin: var(--space-2xl) auto;
+  padding: 0 var(--space-lg);
+}
+
+/* ---- Featured stat (placeholder) ---- */
+.featured {
+  max-width: 1080px; /* page width, again — always the same */
+  margin: 0 auto;
+  padding: 0 var(--space-lg) var(--space-5xl);
+}
+.featured-stat {
+  /* Centred and capped narrower than the page: a hero
+     number reads as a monument, not a paragraph, so
+     its measure (line length) stays short. */
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: var(--space-3xl) var(--space-lg);
+}
+.stat-label {
+  /* Metadata treatment: smallest size on the card,
+     letter-spacing opens caps up so they stay
+     legible at small sizes. */
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.stat-value {
+  /* The star. ~3.5x body text: hierarchy is ratio,
+     not a magic number — a hero value should be
+     unmistakably the biggest thing in its card.
+     When real data arrives, only this text changes. */
+  font-size: 3.5rem;
+  line-height: 1.1;
+  margin: var(--space-sm) 0;
+}
+.stat-context {
+  /* Explanation-sized: body text, no emphasis.
+     It informs; it doesn't compete. */
+  font-size: 1rem;
+  margin: 0;
+}
 .site-footer {
   background: #17171c;
   color: #b9b5a8;
   text-align: center;
-  padding: 20px;
-  margin-top: 40px;
+  padding: var(--space-xl);
+  margin-top: var(--space-5xl);
   font-size: 14px;
 }
 
