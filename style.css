@@ -105,7 +105,6 @@ nav {
   justify-content: center;
   margin: var(--space-2xl) auto;
   max-width: 1080px;
-  
 }
 
 .card {
@@ -196,6 +195,46 @@ nav {
   padding: var(--space-xl);
   margin-top: var(--space-5xl);
   font-size: 14px;
+}
+
+/* Phase 3: Play Explorer */
+.filters {
+  display: flex;
+  flex-wrap: wrap; /* wrap, never squeeze, on a phone */
+  gap: 16px;
+  margin: 24px 0 8px;
+}
+.filters label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 700;
+}
+.summary {
+  font-size: 18px; /* the verdict line — size it like one */
+  font-weight: 700;
+  margin: 16px 0;
+}
+.table-scroll {
+  overflow-x: auto; /* the table scrolls inside its box; */
+} /* the page itself never scrolls sideways */
+.plays-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.plays-table th,
+.plays-table td {
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+.epa-pos {
+  color: #1e7a3c;
+  font-weight: 700;
+}
+.epa-neg {
+  color: #b5122e;
+  font-weight: 700;
 }
 
 @media (max-width: 700px) {
