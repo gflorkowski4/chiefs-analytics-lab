@@ -237,6 +237,12 @@ nav {
   font-weight: 700;
 }
 
+
+.plays-table {
+  min-width: 680px; /* wide enough for 8 columns to read; */
+                    /* wider than a phone, so .table-scroll */
+                    /* scrolls it sideways inside its box */
+}
 @media (max-width: 700px) {
   .cards {
     flex-direction: column; /* stack the cards */

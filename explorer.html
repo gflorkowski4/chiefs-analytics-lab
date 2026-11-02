@@ -1,57 +1,70 @@
-<main class="explorer">
-<link rel="stylesheet" href="style.css" />
-  <h1>Play Explorer</h1>
-  <p class="explorer-intro">
-    Every Kansas City pass and run from 2024 — filter by week,
-    down, and play type. EPA and success update with the table.
-  </p>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Play Explorer — Chiefs Analytics Lab</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="explorer">
+      <h1>Play Explorer</h1>
+      <p class="explorer-intro">
+        Every Kansas City pass and run from 2024 — filter by week, down, and
+        play type. EPA and success update with the table.
+      </p>
 
-  <div class="filters">
-    <label>
-      Week
-      <select id="weekFilter"></select>
-    </label>
-    <label>
-      Down
-      <select id="downFilter">
-        <option value="all">All downs</option>
-        <option value="1">1st</option>
-        <option value="2">2nd</option>
-        <option value="3">3rd</option>
-        <option value="4">4th</option>
-      </select>
-    </label>
-    <label>
-      Play type
-      <select id="typeFilter">
-        <option value="all">All types</option>
-        <option value="pass">Pass</option>
-        <option value="run">Run</option>
-      </select>
-    </label>
-  </div>
+      <div class="filters">
+        <label>
+          Week
+          <select id="weekFilter"></select>
+        </label>
+        <label>
+          Down
+          <select id="downFilter">
+            <option value="all">All downs</option>
+            <option value="1">1st</option>
+            <option value="2">2nd</option>
+            <option value="3">3rd</option>
+            <option value="4">4th</option>
+          </select>
+        </label>
+        <label>
+          Play type
+          <select id="typeFilter">
+            <option value="all">All types</option>
+            <option value="pass">Pass</option>
+            <option value="run">Run</option>
+          </select>
+        </label>
+      </div>
 
-  <p class="summary" id="summary" aria-live="polite">
-    Loading plays…
-  </p>
+      <p class="summary" id="summary" aria-live="polite">Loading plays…</p>
 
-  <div class="table-scroll">
-    <table class="plays-table">
-      <thead>
-        <tr>
-          <th>Wk</th><th>Down</th><th>Field</th>
-          <th>Type</th><th>Yds</th><th>EPA</th>
-          <th>Success</th><th>Play</th>
-        </tr>
-      </thead>
-      <tbody id="playsBody"></tbody>
-    </table>
-  </div>
+      <div class="table-scroll">
+        <table class="plays-table">
+          <thead>
+            <tr>
+              <th>Wk</th>
+              <th>Down</th>
+              <th>Field</th>
+              <th>Type</th>
+              <th>Yds</th>
+              <th>EPA</th>
+              <th>Success</th>
+              <th>Play</th>
+            </tr>
+          </thead>
+          <tbody id="playsBody"></tbody>
+        </table>
+      </div>
 
-  <p class="load-error" id="loadError" hidden>
-    The plays file couldn't be loaded. If you're viewing this
-    locally, open the page through Live Server rather than as a
-    file — and check that chiefs_plays_2024.json sits beside it.
-  </p>
-</main>
-<script src="explorer.js"></script>
+      <p class="load-error" id="loadError" hidden>
+        The plays file couldn't be loaded. If you're viewing this locally, open
+        the page through Live Server rather than as a file — and check that
+        chiefs_plays_2024.json sits beside it.
+      </p>
+    </main>
+    <script src="explorer.js"></script>
+  </body>
+</html>
