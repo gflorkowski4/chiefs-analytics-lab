@@ -8,6 +8,9 @@
   --space-3xl: 28px;
   --space-4xl: 32px; /* Inside-section breathing room */
   --space-5xl: 48px; /* Between sections — the biggest pause */
+
+  --muted: #666666; /* Supporting text on light backgrounds — same
+                       gray as .sub, dark enough to stay readable */
 }
 
 *,
@@ -121,24 +124,16 @@ nav {
 }
 
 .sub {
-  color: #666666;
+  color: var(--muted);
   margin: 0 0 var(--space-lg);
 }
 
-.filters span {
-  display: inline-block;
-  border: 1px solid #ffb81c;
-  background: #fff4d6;
-  border-radius: 20px;
-  padding: var(--space-xs) var(--space-md);
-  font-size: 13px;
-  margin: 0 var(--space-sm) var(--space-sm) 0;
-}
+
 
 .placeholder {
   border: 2px dashed #bbbbbb;
   border-radius: 8px;
-  color: #888888;
+  color: var(--muted);
   text-align: center;
   padding: var(--space-4xl) var(--space-md);
   margin-top: var(--space-sm);
@@ -198,13 +193,13 @@ nav {
 }
 
 /* Phase 3: Play Explorer */
-.filters {
+.explorer .filters {
   display: flex;
   flex-wrap: wrap; /* wrap, never squeeze, on a phone */
   gap: var(--space-md);
   margin: var(--space-lg) 0 var(--space-sm);
 }
-.filters label {
+.explorer .filters label {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
