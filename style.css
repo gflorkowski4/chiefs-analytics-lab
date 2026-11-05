@@ -201,19 +201,19 @@ nav {
 .filters {
   display: flex;
   flex-wrap: wrap; /* wrap, never squeeze, on a phone */
-  gap: 16px;
-  margin: 24px 0 8px;
+  gap: var(--space-md);
+  margin: var(--space-lg) 0 var(--space-sm);
 }
 .filters label {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: var(--space-sm);
   font-weight: 700;
 }
 .summary {
   font-size: 18px; /* the verdict line — size it like one */
   font-weight: 700;
-  margin: 16px 0;
+  margin: var(--space-lg) 0;
 }
 .table-scroll {
   overflow-x: auto; /* the table scrolls inside its box; */
@@ -224,7 +224,7 @@ nav {
 }
 .plays-table th,
 .plays-table td {
-  padding: 8px 10px;
+  padding: var(--space-sm) var(--space-md);
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
@@ -237,11 +237,24 @@ nav {
   font-weight: 700;
 }
 
-
 .plays-table {
   min-width: 680px; /* wide enough for 8 columns to read; */
-                    /* wider than a phone, so .table-scroll */
-                    /* scrolls it sideways inside its box */
+  /* wider than a phone, so .table-scroll */
+  /* scrolls it sideways inside its box */
+}
+
+.featured-stat__value {
+  font-size: 2.5rem; /* headline number: clearly larger than body,
+                        clearly smaller than the hero title */
+  line-height: 1;
+  margin: var(--space-md) 0;
+}
+.featured-stat__context {
+  color: var(
+    --muted
+  ); /* context is supporting text — if your
+                          token names differ, use yours */
+  max-width: 52ch; /* short line length keeps a stat note scannable */
 }
 @media (max-width: 700px) {
   .cards {
