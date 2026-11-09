@@ -9,8 +9,19 @@
   --space-4xl: 32px; /* Inside-section breathing room */
   --space-5xl: 48px; /* Between sections — the biggest pause */
 
-  --muted: #666666; /* Supporting text on light backgrounds — same
+  --text-muted: #8c8c8c; /* Supporting text on dark backgrounds — same
                        gray as .sub, dark enough to stay readable */
+  --text-primary: #d9d9d9; /* Primary text on dark backgrounds */
+  --text-heading: #ffb81c; /* Headings on dark backgrounds — gold, not yellow */
+  --background-primary: #17171c; /* Dark background for hero and footer */
+  --background-secondary: #1f1f26; /* Darker background for cards */
+  --background-tertiary: #E31837; /* Chiefs red */
+  --shadow-dark: #0c0c10; /* Dark shadow for cards on light backgrounds */
+  --shadow-light: #2e2e38; /* Light shadow for cards on dark backgrounds */
+
+  --offset-top: 8px;
+  --offset-bottom: -8px;
+  --blur-radius: 16px;
 }
 
 *,
@@ -19,13 +30,14 @@
   box-sizing: border-box;
 }
 body {
+  background: var(--background-primary);
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
 }
 
 .hero {
-  background: #17171c;
+  background: var(--background-primary);
   padding: var(--space-5xl) var(--space-3xl);
 }
 
@@ -51,19 +63,22 @@ body {
 }
 
 .cta {
-  background: #e31837;
+  background: var(--background-secondary);
   color: #ffffff;
   padding: var(--space-md) var(--space-2xl);
-  border-radius: 6px;
   text-decoration: none;
   font-weight: bold;
+  box-shadow: var(--offset-top) var(--offset-top) var(--blur-radius) var(--shadow-dark),
+    var(--offset-bottom) var(--offset-bottom) var(--blur-radius) var(--shadow-light);
+
+  transition: box-shadow 120ms ease;
 }
 
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #e31837;
+  background: var(--background-tertiary);
   padding: var(--space-lg) var(--space-xl);
   min-height: 64px;
 }
@@ -111,11 +126,20 @@ nav {
 }
 
 .card {
-  background: #ffffff;
+  background: var(--background-secondary);
+  color: var(--text-primary);
   flex: 1 1 280px;
-  border: 2px solid #e31837;
+  box-shadow: var(--offset-top) var(--offset-top) var(--blur-radius) var(--shadow-dark),
+    var(--offset-bottom) var(--offset-bottom) var(--blur-radius) var(--shadow-light);
+    
   border-radius: 10px;
   padding: var(--space-2xl);
+}
+
+.card__title {
+  color: var(--text-heading);
+  font-size: 20px;
+  margin: 0 0 var(--space-md);
 }
 
 .card h2 {
@@ -124,22 +148,21 @@ nav {
 }
 
 .sub {
-  color: var(--muted);
+  color: var(--text-muted);
   margin: 0 0 var(--space-lg);
 }
-
-
 
 .placeholder {
   border: 2px dashed #bbbbbb;
   border-radius: 8px;
-  color: var(--muted);
+  color: var(--text-muted);
   text-align: center;
   padding: var(--space-4xl) var(--space-md);
   margin-top: var(--space-sm);
 }
 
 .how-it-works {
+  color: var(--text-primary);
   max-width: 1080px;
   margin: var(--space-2xl) auto;
   padding: 0 var(--space-lg);
@@ -150,6 +173,9 @@ nav {
   max-width: 1080px; /* page width, again — always the same */
   margin: 0 auto;
   padding: 0 var(--space-lg) var(--space-5xl);
+  box-shadow: inset var(--offset-top) var(--offset-top) var(--blur-radius) var(--shadow-dark),
+    inset var(--offset-bottom) var(--offset-bottom) var(--blur-radius) var(--shadow-light);
+    
 }
 .featured-stat {
   /* Centred and capped narrower than the page: a hero
@@ -160,28 +186,31 @@ nav {
   margin: 0 auto;
   padding: var(--space-3xl) var(--space-lg);
 }
-.stat-label {
+.featured-stat__label {
   /* Metadata treatment: smallest size on the card,
      letter-spacing opens caps up so they stay
      legible at small sizes. */
+  color: var(--text-heading);
   font-size: 0.8rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  margin: var(--space-sm)
 }
-.stat-value {
+.featured-stat__value {
   /* The star. ~3.5x body text: hierarchy is ratio,
      not a magic number — a hero value should be
      unmistakably the biggest thing in its card.
      When real data arrives, only this text changes. */
+  color: #4ecb7d;
   font-size: 3.5rem;
   line-height: 1.1;
-  margin: var(--space-sm) 0;
+  margin: 0 var(--space-sm) 0;
 }
-.stat-context {
+.featured-stat__context {
   /* Explanation-sized: body text, no emphasis.
      It informs; it doesn't compete. */
   font-size: 1rem;
-  margin: 0;
+  margin: 0 var(--space-sm) 0;
 }
 .site-footer {
   background: #17171c;
@@ -193,6 +222,10 @@ nav {
 }
 
 /* Phase 3: Play Explorer */
+
+.explorer {
+  color: var(--text-primary)
+}
 .explorer .filters {
   display: flex;
   flex-wrap: wrap; /* wrap, never squeeze, on a phone */
@@ -224,11 +257,11 @@ nav {
   border-bottom: 1px solid #ddd;
 }
 .epa-pos {
-  color: #1e7a3c;
+  color: #4ecb7d;
   font-weight: 700;
 }
 .epa-neg {
-  color: #b5122e;
+  color: #ff5f73;
   font-weight: 700;
 }
 
@@ -246,7 +279,7 @@ nav {
 }
 .featured-stat__context {
   color: var(
-    --muted
+    --text-muted
   ); /* context is supporting text — if your
                           token names differ, use yours */
   max-width: 52ch; /* short line length keeps a stat note scannable */

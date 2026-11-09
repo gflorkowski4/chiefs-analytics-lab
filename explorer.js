@@ -1,7 +1,7 @@
 // State: one pristine array. Everything else is derived.
 let allPlays = [];
 
-const seasonFilter = document.getElementById("seasonFilter");
+const seasonFilter = document.querySelector("#seasonFilter");
 const weekFilter = document.querySelector("#weekFilter");
 const downFilter = document.querySelector("#downFilter");
 const typeFilter = document.querySelector("#typeFilter");
