@@ -6,7 +6,6 @@ const weekFilter = document.querySelector("#weekFilter");
 const downFilter = document.querySelector("#downFilter");
 const typeFilter = document.querySelector("#typeFilter");
 const playsBody = document.querySelector("#playsBody");
-const summaryEl = document.querySelector("#summary");
 const statPlays = document.querySelector("#statPlays");
 const statEpa = document.querySelector("#statEpa");
 const statSuccess = document.querySelector("#statSuccess");
