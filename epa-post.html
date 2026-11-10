@@ -3,47 +3,32 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="color-scheme" content="light dark" />
+    <meta name="color-scheme" content="dark" />
     <link rel="icon" href="data:," />
     <title>What is EPA, Explained with Mahomes Plays</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="style.css" />
     <style>
   
         :root {
-          color-scheme: dark;
-          --bg: #17171c;
-          --surface: #1f1f26;
-          --surface-2: #23232c;
-          --ink: #f4f2ee;
-          --ink-soft: #c9c5bd;
-          --muted: #9a958c;
-          --line: #33333d;
-          --red: #ff4d6a;
-          --red-ink: #ff8296;
-          --gold: #ffb81c;
-          --gold-bright: #ffb81c;
-          --pos: #4cc38a;
-          --neg: #ff6b81;
-          --shadow-card: 8px 8px 18px #0c0c10, -6px -6px 16px #2e2e38;
-          --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-        }
-
-      * { box-sizing: border-box; }
-      html { -webkit-text-size-adjust: 100%; }
-      body {
-        margin: 0;
-        background: var(--bg);
-        color: var(--ink);
-        font-family: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
-        font-size: 17px;
-        line-height: 1.62;
+        color-scheme: dark;
+        --bg: #17171c;
+        --surface: #1f1f26;
+        --surface-2: #26262e;
+        --ink: #d9d9d9;
+        --ink-soft: #c9c5bd;
+        --muted: #8c8c8c;
+        --line: #2e2e38;
+        --red: #ff5f73;
+        --red-ink: #ff5f73;
+        --gold: #ffb81c;
+        --gold-bright: #ffb81c;
+        --pos: #4ecb7d;
+        --neg: #ff5f73;
+        --shadow-card: 8px 8px 16px #0c0c10, -8px -8px 16px #2e2e38;
+        --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        --radius: 10px;
       }
-      .mono { font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
+      .mono { font-family: Arial, sans-serif; }
 
       .page {
         max-width: 760px;
@@ -55,27 +40,8 @@
       }
 
       /* ---------- header ---------- */
-      .preview-note {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 13px;
-        font-weight: 600;
-        letter-spacing: 0.04em;
-        color: var(--ink-soft);
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        padding: 5px 12px 5px 10px;
-        margin-bottom: 26px;
-        background: var(--surface);
-      }
-      .preview-note .dot {
-        width: 8px; height: 8px; border-radius: 50%;
-        background: var(--gold-bright);
-        flex: none;
-      }
       .series-line {
-        font-family: "Barlow Condensed", "Barlow", sans-serif;
+        font-family: Arial, sans-serif;
         font-size: 15px;
         font-weight: 600;
         letter-spacing: 0.22em;
@@ -84,7 +50,7 @@
         margin: 0 0 10px;
       }
       h1 {
-        font-family: "Barlow Condensed", "Barlow", sans-serif;
+        font-family: Arial, sans-serif;
         font-weight: 700;
         font-size: clamp(42px, 9vw, 64px);
         line-height: 0.98;
@@ -128,7 +94,7 @@
         margin: 0 0 8px;
       }
       .formula .eq {
-        font-family: "IBM Plex Mono", ui-monospace, monospace;
+        font-family: Arial, sans-serif;
         font-size: clamp(16.5px, 4.4vw, 21px);
         font-weight: 600;
         line-height: 1.5;
@@ -153,7 +119,7 @@
         padding: 16px 16px 14px;
       }
       .stat .value {
-        font-family: "Barlow Condensed", "Barlow", sans-serif;
+        font-family: Arial, sans-serif;
         font-size: 34px;
         font-weight: 700;
         line-height: 1;
@@ -170,16 +136,12 @@
       /* ---------- sections ---------- */
       section { margin-top: 52px; }
       h2 {
-        font-family: "Barlow Condensed", "Barlow", sans-serif;
+        font-family: Arial, sans-serif;
         font-size: clamp(30px, 6.4vw, 40px);
         font-weight: 700;
         line-height: 1.05;
         margin: 0 0 6px;
         color: var(--gold);
-      }
-      @media (prefers-color-scheme: light) {
-        h2 { color: var(--ink); }
-        h2 .accent { color: var(--gold); }
       }
       .section-sub {
         color: var(--muted);
@@ -207,7 +169,7 @@
         border-bottom: 1px solid var(--line);
       }
       .drive-head .matchup {
-        font-family: "Barlow Condensed", "Barlow", sans-serif;
+        font-family: Arial, sans-serif;
         font-size: 21px;
         font-weight: 600;
         letter-spacing: 0.02em;
@@ -233,7 +195,7 @@
       .play:hover { background: var(--surface-2); }
       .play:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: -2px; }
       .play .num {
-        font-family: "Barlow Condensed", "Barlow", sans-serif;
+        font-family: Arial, sans-serif;
         font-size: 20px;
         font-weight: 700;
         color: var(--muted);
@@ -243,7 +205,7 @@
       .play .desc { font-size: 16.5px; line-height: 1.45; }
       .play .desc .note { display: block; font-size: 14px; color: var(--muted); margin-top: 2px; }
       .play .epa {
-        font-family: "IBM Plex Mono", ui-monospace, monospace;
+        font-family: Arial, sans-serif;
         font-size: 17px;
         font-weight: 600;
         white-space: nowrap;
@@ -302,7 +264,7 @@
       }
       .drive-total { font-size: 16px; margin: 0; }
       .drive-total .big {
-        font-family: "Barlow Condensed", "Barlow", sans-serif;
+        font-family: Arial, sans-serif;
         font-size: 28px;
         font-weight: 700;
         color: var(--pos);
@@ -310,7 +272,7 @@
         margin-right: 4px;
       }
       .cumulative {
-        font-family: "IBM Plex Mono", ui-monospace, monospace;
+        font-family: Arial, sans-serif;
         font-size: 14.5px;
         color: var(--ink-soft);
         margin: 0;
@@ -335,7 +297,7 @@
         margin-top: 22px;
       }
       .chart-title {
-        font-family: "Barlow Condensed", "Barlow", sans-serif;
+        font-family: Arial, sans-serif;
         font-size: 20px;
         font-weight: 600;
         margin: 0 0 2px;
@@ -361,7 +323,7 @@
       }
       .week-table caption {
         text-align: left;
-        font-family: "Barlow Condensed", "Barlow", sans-serif;
+        font-family: Arial, sans-serif;
         font-size: 19px;
         font-weight: 600;
         padding-bottom: 8px;
@@ -379,7 +341,7 @@
         font-weight: 700;
       }
       .week-table td.num, .week-table th.num { text-align: right; font-variant-numeric: tabular-nums; }
-      .week-table td.num { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 14.5px; }
+      .week-table td.num { font-family: Arial, sans-serif; font-size: 14.5px; }
       .week-table tr.best td { font-weight: 700; }
       .week-table tr.bye td { color: var(--muted); font-style: italic; }
 
@@ -408,7 +370,6 @@
         .bar-fill { transition: width 0.35s ease, left 0.35s ease; }
       }
     </style>
-    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
      <nav>
@@ -664,7 +625,7 @@
           s += '<line x1="' + left + '" x2="' + (W - right) + '" y1="' + yy + '" y2="' + yy +
                '" stroke="' + (t === 0 ? cLabel : cLine) + '" stroke-width="' + (t === 0 ? 1.4 : 1) + '"/>';
           s += '<text x="' + (left - 8) + '" y="' + (yy + 4) + '" text-anchor="end" font-size="12" fill="' + cLabel +
-               '" font-family="IBM Plex Mono, monospace">' + (t === 0 ? "0" : fmt(t, 1)) + "</text>";
+               '" font-family="Arial, sans-serif">' + (t === 0 ? "0" : fmt(t, 1)) + "</text>";
         });
         s += '<text x="' + left + '" y="14" font-size="12" fill="' + cLabel + '">EPA / play</text>';
 
