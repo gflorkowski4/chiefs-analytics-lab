@@ -7,25 +7,35 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <nav>
+      <div class="brand">CHIEFS <span>ANALYTICS LAB</span></div>
+      <div class="links">
+        <a href="index.html">Home</a>
+        <a href="explorer.html">Plays</a>
+        <a href="explorer.html">EPA</a>
+        <a href="#">About</a>
+      </div>
+    </nav>
+
     <main class="explorer">
       <h1 class="card__title">Play Explorer</h1>
       <p class="explorer-intro">
-        Every Kansas City pass and run from 2024, 2025 and 2026 — filter by week, down, and
-        play type. EPA and success update with the table.
+        Every Kansas City pass and run from 2024, 2025 and 2026 — filter by
+        week, down, and play type. EPA and success update with the table.
       </p>
 
       <div class="filters">
         <label>
           Season
-          <select class = "dropdown" id="seasonFilter"></select>
+          <select class="dropdown" id="seasonFilter"></select>
         </label>
         <label>
           Week
-          <select class = "dropdown" id="weekFilter"></select>
+          <select class="dropdown" id="weekFilter"></select>
         </label>
         <label>
           Down
-          <select class = "dropdown" id="downFilter">
+          <select class="dropdown" id="downFilter">
             <option value="all">All downs</option>
             <option value="1">1st</option>
             <option value="2">2nd</option>
@@ -35,7 +45,7 @@
         </label>
         <label>
           Play type
-          <select class = "dropdown" id="typeFilter">
+          <select class="dropdown" id="typeFilter">
             <option value="all">All types</option>
             <option value="pass">Pass</option>
             <option value="run">Run</option>
@@ -43,21 +53,21 @@
         </label>
       </div>
 
-     <div class="summary-cards" id="summary" aria-live="polite">
-  <div class="stat-card">
-    <p class="stat-card__label">Plays</p>
-    <p class="stat-card__value" id="statPlays">—</p>
-  </div>
-  <div class="stat-card">
-    <p class="stat-card__label">EPA / play</p>
-    <p class="stat-card__value" id="statEpa">—</p>
-  </div>
-  <div class="stat-card">
-    <p class="stat-card__label">Success</p>
-    <p class="stat-card__value" id="statSuccess">—</p>
-  </div>
-</div>
-<p class="summary-scope" id="summaryScope">Loading plays…</p>
+      <div class="summary-cards" id="summary" aria-live="polite">
+        <div class="stat-card">
+          <p class="stat-card__label">Plays</p>
+          <p class="stat-card__value" id="statPlays">—</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-card__label">EPA / play</p>
+          <p class="stat-card__value" id="statEpa">—</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-card__label">Success</p>
+          <p class="stat-card__value" id="statSuccess">—</p>
+        </div>
+      </div>
+      <p class="summary-scope" id="summaryScope">Loading plays…</p>
 
       <div class="table-scroll">
         <table class="plays-table">
@@ -77,7 +87,9 @@
         </table>
       </div>
       <p class="dataset-note">
-        Explorer dataset: 2,532 Chiefs pass & run plays with a down recorded, across 2024, 2025 and 2026 · +0.066 EPA/play · 46.4% success. </p>
+        Explorer dataset: 2,532 Chiefs pass & run plays with a down recorded,
+        across 2024, 2025 and 2026 · +0.066 EPA/play · 46.4% success.
+      </p>
       <p class="load-error" id="loadError" hidden>
         The plays file couldn't be loaded. If you're viewing this locally, open
         the page through Live Server rather than as a file — and check that

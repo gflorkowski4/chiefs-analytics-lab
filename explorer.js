@@ -11,6 +11,7 @@ const statPlays = document.querySelector("#statPlays");
 const statEpa = document.querySelector("#statEpa");
 const statSuccess = document.querySelector("#statSuccess");
 const summaryScope = document.querySelector("#summaryScope");
+const errorEl = document.querySelector("#loadError");
 
 async function loadPlays() {
   try {
@@ -21,7 +22,7 @@ async function loadPlays() {
     buildWeekOptions();
     update();
   } catch (err) {
-    summaryEl.textContent = "Couldn't load the plays.";
+    summaryScope.textContent = "Couldn't load the plays.";
     errorEl.hidden = false;
   }
 }

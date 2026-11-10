@@ -15,7 +15,7 @@
   --text-heading: #ffb81c; /* Headings on dark backgrounds — gold, not yellow */
   --background-primary: #17171c; /* Dark background for hero and footer */
   --background-secondary: #1f1f26; /* Darker background for cards */
-  --background-tertiary: #E31837; /* Chiefs red */
+  --background-tertiary: #e31837; /* Chiefs red */
   --shadow-dark: #0c0c10; /* Dark shadow for cards on light backgrounds */
   --shadow-light: #2e2e38; /* Light shadow for cards on dark backgrounds */
 
@@ -68,8 +68,10 @@ body {
   padding: var(--space-md) var(--space-2xl);
   text-decoration: none;
   font-weight: bold;
-  box-shadow: var(--offset-top) var(--offset-top) var(--blur-radius) var(--shadow-dark),
-    var(--offset-bottom) var(--offset-bottom) var(--blur-radius) var(--shadow-light);
+  box-shadow:
+    var(--offset-top) var(--offset-top) var(--blur-radius) var(--shadow-dark),
+    var(--offset-bottom) var(--offset-bottom) var(--blur-radius)
+      var(--shadow-light);
 
   transition: box-shadow 120ms ease;
 }
@@ -129,9 +131,11 @@ nav {
   background: var(--background-secondary);
   color: var(--text-primary);
   flex: 1 1 280px;
-  box-shadow: var(--offset-top) var(--offset-top) var(--blur-radius) var(--shadow-dark),
-    var(--offset-bottom) var(--offset-bottom) var(--blur-radius) var(--shadow-light);
-    
+  box-shadow:
+    var(--offset-top) var(--offset-top) var(--blur-radius) var(--shadow-dark),
+    var(--offset-bottom) var(--offset-bottom) var(--blur-radius)
+      var(--shadow-light);
+
   border-radius: 10px;
   padding: var(--space-2xl);
 }
@@ -173,9 +177,11 @@ nav {
   max-width: 1080px; /* page width, again — always the same */
   margin: 0 auto;
   padding: 0 var(--space-lg) var(--space-5xl);
-  box-shadow: inset var(--offset-top) var(--offset-top) var(--blur-radius) var(--shadow-dark),
-    inset var(--offset-bottom) var(--offset-bottom) var(--blur-radius) var(--shadow-light);
-    
+  box-shadow:
+    inset var(--offset-top) var(--offset-top) var(--blur-radius)
+      var(--shadow-dark),
+    inset var(--offset-bottom) var(--offset-bottom) var(--blur-radius)
+      var(--shadow-light);
 }
 .featured-stat {
   /* Centred and capped narrower than the page: a hero
@@ -194,7 +200,7 @@ nav {
   font-size: 0.8rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  margin: var(--space-sm)
+  margin: var(--space-sm);
 }
 .featured-stat__value {
   /* The star. ~3.5x body text: hierarchy is ratio,
@@ -223,7 +229,6 @@ nav {
 
 /* Phase 3: Play Explorer */
 
-
 .explorer {
   color: var(--text-primary);
   max-width: 1080px;
@@ -232,11 +237,17 @@ nav {
 }
 
 .explorer .filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin: var(--space-lg) 0 var(--space-sm);
   background: var(--background-secondary);
   border-radius: 10px;
   padding: var(--space-lg);
-  box-shadow: var(--offset-top) var(--offset-top) var(--blur-radius) var(--shadow-dark),
-    var(--offset-bottom) var(--offset-bottom) var(--blur-radius) var(--shadow-light);
+  box-shadow:
+    var(--offset-top) var(--offset-top) var(--blur-radius) var(--shadow-dark),
+    var(--offset-bottom) var(--offset-bottom) var(--blur-radius)
+      var(--shadow-light);
 }
 .explorer .filters label {
   display: flex;
@@ -251,7 +262,8 @@ nav {
   border: none;
   border-radius: 8px;
   padding: var(--space-sm) var(--space-md);
-  box-shadow: inset 4px 4px 8px var(--shadow-dark),
+  box-shadow:
+    inset 4px 4px 8px var(--shadow-dark),
     inset -4px -4px 8px var(--shadow-light);
 }
 .summary {
@@ -274,8 +286,10 @@ nav {
   border-radius: 10px;
   padding: var(--space-lg);
   text-align: center;
-  box-shadow: var(--offset-top) var(--offset-top) var(--blur-radius) var(--shadow-dark),
-    var(--offset-bottom) var(--offset-bottom) var(--blur-radius) var(--shadow-light);
+  box-shadow:
+    var(--offset-top) var(--offset-top) var(--blur-radius) var(--shadow-dark),
+    var(--offset-bottom) var(--offset-bottom) var(--blur-radius)
+      var(--shadow-light);
 }
 
 .stat-card__label {
@@ -300,11 +314,15 @@ nav {
   margin: 0 0 var(--space-lg);
 }
 .table-scroll {
+  max-height: 600px;
+  overflow-y: auto;
   background: var(--background-secondary);
   border-radius: 10px;
   padding: var(--space-md);
-  box-shadow: var(--offset-top) var(--offset-top) var(--blur-radius) var(--shadow-dark),
-    var(--offset-bottom) var(--offset-bottom) var(--blur-radius) var(--shadow-light);
+  box-shadow:
+    var(--offset-top) var(--offset-top) var(--blur-radius) var(--shadow-dark),
+    var(--offset-bottom) var(--offset-bottom) var(--blur-radius)
+      var(--shadow-light);
 }
 .plays-table {
   border-collapse: collapse;
