@@ -17,15 +17,15 @@
       <div class="filters">
         <label>
           Season
-          <select id="seasonFilter"></select>
+          <select class = "dropdown" id="seasonFilter"></select>
         </label>
         <label>
           Week
-          <select id="weekFilter"></select>
+          <select class = "dropdown" id="weekFilter"></select>
         </label>
         <label>
           Down
-          <select id="downFilter">
+          <select class = "dropdown" id="downFilter">
             <option value="all">All downs</option>
             <option value="1">1st</option>
             <option value="2">2nd</option>
@@ -35,7 +35,7 @@
         </label>
         <label>
           Play type
-          <select id="typeFilter">
+          <select class = "dropdown" id="typeFilter">
             <option value="all">All types</option>
             <option value="pass">Pass</option>
             <option value="run">Run</option>
@@ -43,7 +43,21 @@
         </label>
       </div>
 
-      <p class="summary" id="summary" aria-live="polite">Loading plays…</p>
+     <div class="summary-cards" id="summary" aria-live="polite">
+  <div class="stat-card">
+    <p class="stat-card__label">Plays</p>
+    <p class="stat-card__value" id="statPlays">—</p>
+  </div>
+  <div class="stat-card">
+    <p class="stat-card__label">EPA / play</p>
+    <p class="stat-card__value" id="statEpa">—</p>
+  </div>
+  <div class="stat-card">
+    <p class="stat-card__label">Success</p>
+    <p class="stat-card__value" id="statSuccess">—</p>
+  </div>
+</div>
+<p class="summary-scope" id="summaryScope">Loading plays…</p>
 
       <div class="table-scroll">
         <table class="plays-table">

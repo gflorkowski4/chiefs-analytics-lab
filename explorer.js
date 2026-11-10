@@ -7,7 +7,10 @@ const downFilter = document.querySelector("#downFilter");
 const typeFilter = document.querySelector("#typeFilter");
 const playsBody = document.querySelector("#playsBody");
 const summaryEl = document.querySelector("#summary");
-const errorEl = document.querySelector("#loadError");
+const statPlays = document.querySelector("#statPlays");
+const statEpa = document.querySelector("#statEpa");
+const statSuccess = document.querySelector("#statSuccess");
+const summaryScope = document.querySelector("#summaryScope");
 
 async function loadPlays() {
   try {
@@ -71,39 +74,55 @@ function update() {
 }
 
 function renderTable(plays) {
-  // Show the first 200 — enough to browse, kind to the DOM.
-  playsBody.innerHTML = plays
-    .slice(0, 200)
-    .map(
-      (p) => `
+  let html = "";
+  let lastWeek = null;
+  let lastSeason = null;
+  for (const p of plays.slice(0, 200)) {
+    if (p.week !== lastWeek || p.season !== lastSeason) {
+      html += `<tr class="week-group"><td colspan="8">Week ${p.week} · ${p.season}</td></tr>`;
+      lastWeek = p.week;
+      lastSeason = p.season;
+    }
+    html += `
     <tr>
       <td>${p.week}</td>
       <td>${p.down} & ${p.distance}</td>
       <td>${p.yardline}</td>
       <td>${p.play_type}</td>
       <td>${p.yards}</td>
-      <td class="${p.epa >= 0 ? "epa-pos" : "epa-neg"}">
-        ${p.epa >= 0 ? "+" : ""}${p.epa.toFixed(2)}
+      <td>
+        <span class="${p.epa >= 0 ? "epa-pos" : "epa-neg"}">
+          ${p.epa >= 0 ? "+" : ""}${p.epa.toFixed(2)}
+        </span>
+        <span
+          class="epa-bar ${p.epa >= 0 ? "epa-bar--pos" : "epa-bar--neg"}"
+          style="width: ${Math.min((Math.abs(p.epa) / 3.5) * 100, 100).toFixed(0)}%"
+        ></span>
       </td>
       <td>${p.success ? "✓" : "—"}</td>
       <td>${p.desc}</td>
-    </tr>`,
-    )
-    .join("");
+    </tr>`;
+  }
+  playsBody.innerHTML = html;
 }
-
 function renderSummary(plays) {
   if (!plays.length) {
-    summaryEl.textContent = "No plays match those filters.";
+    statPlays.textContent = "0";
+    statEpa.textContent = "—";
+    statSuccess.textContent = "—";
+    summaryScope.textContent = "No plays match those filters.";
     return;
   }
   const epa = plays.reduce((s, p) => s + p.epa, 0) / plays.length;
   const succ = plays.reduce((s, p) => s + p.success, 0) / plays.length;
   const seasonLabel =
     seasonFilter.value === "all" ? "All seasons" : seasonFilter.value;
-  summaryEl.textContent = `${seasonLabel} · ${plays.length} plays · ${epa >= 0 ? "+" : ""}${epa.toFixed(3)} EPA/play · ${(succ * 100).toFixed(1)}% success`;
+  statPlays.textContent = plays.length.toLocaleString();
+  statEpa.textContent = `${epa >= 0 ? "+" : ""}${epa.toFixed(3)}`;
+  statEpa.className = `stat-card__value ${epa >= 0 ? "epa-pos" : "epa-neg"}`;
+  statSuccess.textContent = `${(succ * 100).toFixed(1)}%`;
+  summaryScope.textContent = `${seasonLabel} · regular season only`;
 }
-
 // Season changes rebuild the week list first, then update.
 // The others only need update, because their options never change.
 seasonFilter.addEventListener("change", () => {
