@@ -16,33 +16,91 @@
         <a href="#">About</a>
       </div>
     </nav>
+
     <header class="hero">
-      <p class="eyebrow">Kingdom Analytics</p>
-      <h1>Chiefs Analytics Lab</h1>
-      <p class="description">
-        Chiefs Analytics Lab is a public learning project: we explore football analytics through the lens of the Kansas City Chiefs. The lab's first project is the Play Explorer, which lets you filter every Chiefs pass and run from 2024, 2025 and 2026 by week, down, and play type — and see what each play was worth in expected points. More Features and breakdowns are coming soon.
-      </p>
-      <div class="hero-stat">
-        <p class="hero-stat__label">2026 season so far — EPA per play</p>
-        <p class="hero-stat__value">+0.128</p>
-        <p class="hero-stat__context">420 pass &amp; run plays · 47.9% success · through Week 8, regular season only</p>
+      <div class="hero__inner">
+        <p class="eyebrow">Kingdom Analytics / Football Intelligence</p>
+
+        <h1>Chiefs Analytics Lab</h1>
+
+        <p class="description">
+          Explore every Chiefs pass and run from 2024–2026. Filter by down,
+          week, and play type to understand how each snap impacts expected
+          points.
+        </p>
+
+        <div class="hero__actions">
+          <a class="cta" href="explorer.html">
+            Explore Plays <span aria-hidden="true">↗</span>
+          </a>
+
+          <p class="hero__scope">2024–2026 play data</p>
+        </div>
+
+        <hr class="hero__divider" aria-hidden="true" />
+
+        <section class="hero-stat" aria-labelledby="season-epa-label">
+          <div class="hero-stat__top">
+            <h2 class="hero-stat__label" id="season-epa-label">
+              2026 Season / EPA per Play
+            </h2>
+
+            <svg
+              class="hero-stat__icon"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M3 12h4l3-8 4 16 3-8h4"></path>
+            </svg>
+          </div>
+
+          <div class="hero-stat__headline">
+            <p class="hero-stat__value">+0.128</p>
+            <p class="hero-stat__positive">Positive EPA</p>
+          </div>
+
+          <dl class="hero-stat__metrics">
+            <div class="hero-stat__metric">
+              <dt>Total Plays</dt>
+              <dd>420</dd>
+            </div>
+
+            <div class="hero-stat__metric">
+              <dt>Success Rate</dt>
+              <dd>47.9%</dd>
+            </div>
+          </dl>
+
+          <p class="hero-stat__context">
+            Through Week 8 · Regular season only · Pass and run plays
+          </p>
+        </section>
       </div>
-      </p>
-      <a class="cta" href="explorer.html">Explore Plays</a>
     </header>
+
     <section class="tools">
       <div class="cards">
         <section class="card">
           <h3 class="card__title">Play Explorer</h3>
           <p>
-            Filter Chiefs pass and run plays from 2024, 2025 and 2026 by week, down, and
-            play type. Currently regular season only, playoffs coming soon. EPA and success update with the table.
+            Filter Chiefs pass and run plays from 2024, 2025 and 2026 by week,
+            down, and play type. Currently regular season only, playoffs coming
+            soon. EPA and success update with the table.
           </p>
           <p><strong>2,532 plays · +0.066 EPA/play · 46.4% success</strong></p>
-          <p class="card__suggestion">Start here: Week 17, 2024 — +0.337 EPA/play, the best week in the set.</p>
+          <p class="card__suggestion">
+            Start here: Week 17, 2024 — +0.337 EPA/play, the best week in the
+            set.
+          </p>
 
           <a class="card__link" href="explorer.html">Open the explorer →</a>
-
         </section>
         <section class="card">
           <h3 class="card__title">EPA Breakdowns</h3>
@@ -51,9 +109,12 @@
             plain English.
           </p>
           <p>What is EPA, explained with Mahomes plays.</p>
-<p><strong>+0.053</strong> over 1,392 plays · <strong>Mahomes +0.109</strong></p>
-<p class="card__suggestion">2024 regular season · full offense</p>
-<a class="card__link" href="epa-post.html">Read the breakdown →</a>
+          <p>
+            <strong>+0.053</strong> over 1,392 plays ·
+            <strong>Mahomes +0.109</strong>
+          </p>
+          <p class="card__suggestion">2024 regular season · full offense</p>
+          <a class="card__link" href="epa-post.html">Read the breakdown →</a>
         </section>
       </div>
     </section>
@@ -87,7 +148,10 @@
       <p class="featured-stat__label">2024 Chiefs offense — EPA per play</p>
       <p class="featured-stat__value">+0.053</p>
       <p class="featured-stat__context">
-        Across all 1,392 scrimmage plays in 2024 (50.2% success). The Play Explorer's +0.066 covers a different set — the 2,532 pass and run plays with a down recorded across 2024, 2025 and 2026 — so the two numbers describe different sets, not a disagreement.
+        Across all 1,392 scrimmage plays in 2024 (50.2% success). The Play
+        Explorer's +0.066 covers a different set — the 2,532 pass and run plays
+        with a down recorded across 2024, 2025 and 2026 — so the two numbers
+        describe different sets, not a disagreement.
       </p>
     </section>
     <footer class="site-footer">

@@ -33,7 +33,7 @@ body {
   background: var(--background-primary);
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 .hero {
@@ -475,3 +475,341 @@ nav {
     flex-direction: column; /* stack the cards */
   }
 }
+
+
+/* =========================================
+   CHIEFS ANALYTICS LAB - HERO REDESIGN
+   ========================================= */
+
+/* Main hero container */
+
+.hero {
+  background: var(--background-primary);
+  color: var(--text-primary);
+  text-align: center;
+
+  padding:
+    clamp(64px, 8vw, 100px)
+    var(--space-lg)
+    clamp(64px, 7vw, 88px);
+}
+
+/* Controls the content width */
+
+.hero__inner {
+  width: min(100%, 900px);
+  margin-inline: auto;
+}
+
+/* Small heading above main title */
+
+.hero .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  color: var(--text-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.5;
+  text-transform: uppercase;
+
+  margin: 0 0 var(--space-xl);
+}
+
+/* Red decorative dot */
+
+.hero .eyebrow::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+
+  border-radius: 50%;
+  background: var(--background-tertiary);
+}
+
+/* Main title */
+
+.hero h1 {
+  color: #ffffff;
+
+  font-size: clamp(2.75rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+
+  margin: 0 0 var(--space-xl);
+}
+
+/* Description */
+
+.hero .description {
+  color: #c9c7be;
+
+  font-size: clamp(1rem, 1.7vw, 1.18rem);
+  line-height: 1.65;
+  max-width: 65ch;
+
+  margin: 0 auto;
+}
+
+/* =========================================
+   HERO ACTION AREA
+   ========================================= */
+
+.hero__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+
+  margin-top: var(--space-4xl);
+}
+
+/* Main red button */
+
+.hero .cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+
+  min-height: 46px;
+  padding: var(--space-md) var(--space-2xl);
+
+  color: #ffffff;
+  background: var(--background-tertiary);
+
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: none;
+
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+/* Button hover */
+
+.hero .cta:hover {
+  background: #c8102e;
+  transform: translateY(-2px);
+}
+
+/* Accessible keyboard focus */
+
+.hero .cta:focus-visible {
+  outline: 3px solid var(--text-heading);
+  outline-offset: 4px;
+}
+
+/* Season scope beside button */
+
+.hero__scope {
+  color: #aaaab3;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* Divider between intro and stats */
+
+.hero__divider {
+  width: min(100%, 700px);
+
+  border: 0;
+  border-top: 1px solid #353540;
+
+  margin:
+    var(--space-5xl)
+    auto
+    var(--space-4xl);
+}
+
+/* =========================================
+   HERO STATISTICS DASHBOARD
+   ========================================= */
+
+/* Main EPA card */
+
+.hero-stat {
+  width: min(100%, 660px);
+  margin: 0 auto;
+
+  padding: clamp(22px, 4vw, 32px);
+
+  background: #222229;
+  border: 1px solid #3a3a45;
+  border-radius: 14px;
+
+  text-align: left;
+}
+
+/* Card header */
+
+.hero-stat__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-lg);
+
+  margin-bottom: var(--space-lg);
+}
+
+/* EPA label */
+
+.hero-stat__label {
+  color: var(--text-heading);
+
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  margin: 0;
+}
+
+/* Small activity icon */
+
+.hero-stat__icon {
+  flex: 0 0 auto;
+  color: var(--text-heading);
+}
+
+/* EPA number and status */
+
+.hero-stat__headline {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+
+  column-gap: var(--space-lg);
+  row-gap: var(--space-sm);
+
+  margin-bottom: var(--space-2xl);
+}
+
+/* Large green EPA number */
+
+.hero-stat__value {
+  color: #4ecb7d;
+
+  font-size: clamp(3rem, 8vw, 4rem);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.035em;
+  line-height: 1;
+
+  margin: 0;
+}
+
+/* Positive EPA text */
+
+.hero-stat__positive {
+  color: #4ecb7d;
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  margin: 0;
+}
+
+/* =========================================
+   SECONDARY STATISTICS
+   ========================================= */
+
+/* Two-column metrics layout */
+
+.hero-stat__metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2xl);
+
+  border-top: 1px solid #353540;
+  padding-top: var(--space-2xl);
+
+  margin: 0 0 var(--space-lg);
+}
+
+/* Metric labels */
+
+.hero-stat__metric dt {
+  color: #aaaab3;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  margin: 0 0 var(--space-sm);
+}
+
+/* Metric values */
+
+.hero-stat__metric dd {
+  color: #ffffff;
+
+  font-size: clamp(1.5rem, 3vw, 1.8rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.15;
+
+  margin: 0;
+}
+
+/* Context below the metrics */
+
+.hero-stat__context {
+  color: #aaaab3;
+
+  font-size: 0.85rem;
+  line-height: 1.5;
+
+  margin: 0;
+}
+
+/* =========================================
+   RESPONSIVE HERO
+   ========================================= */
+
+@media (max-width: 520px) {
+
+  /* Stack button and text on mobile */
+
+  .hero__actions {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  /* Wider tap target */
+
+  .hero .cta {
+    width: min(100%, 280px);
+  }
+
+  /* Reduce gap between metrics */
+
+  .hero-stat__metrics {
+    gap: var(--space-lg);
+  }
+
+}
+
+/* Respect reduced-motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .hero .cta {
+    transition: none;
+  }
+
+  .hero .cta:hover {
+    transform: none;
+  }
+
+}
+
