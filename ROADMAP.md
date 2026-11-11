@@ -10,7 +10,7 @@ No rush. We have a lot of time to make this great. Features are added one at a t
 
 - [x] #1 Fix: restore hero description text lost in front-page push
 - [x] #2 Align EPA post with the Lab design system
-- [ ] #3 Add a playoffs filter to the Play Explorer
+- [x] #3 Add a playoffs filter to the Play Explorer
 
 ## Phase 2 — Features, one at a time (December 2026 – January 2027)
 
