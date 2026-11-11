@@ -1,6 +1,7 @@
 // State: one pristine array. Everything else is derived.
 let allPlays = [];
 
+const seasonTypeFilter = document.querySelector("#seasonTypeFilter");
 const seasonFilter = document.querySelector("#seasonFilter");
 const weekFilter = document.querySelector("#weekFilter");
 const downFilter = document.querySelector("#downFilter");
@@ -26,20 +27,30 @@ async function loadPlays() {
   }
 }
 
+// Everything downstream of the type filter starts here.
+function playsInType() {
+  const t = seasonTypeFilter.value;
+  if (t === "all") return allPlays;
+  return allPlays.filter((p) => p.season_type === t);
+}
+
 function buildSeasonOptions() {
-  const seasons = [...new Set(allPlays.map((p) => p.season))].sort(
-    (a, b) => b - a,
-  ); // newest first
+  const pool = playsInType();
+  const seasons = [...new Set(pool.map((p) => p.season))].sort((a, b) => b - a); // newest first
+  const previous = seasonFilter.value; // keep their pick if it still exists
   seasonFilter.innerHTML =
     seasons.map((s) => `<option value="${s}">${s}</option>`).join("") +
     `<option value="all">All seasons</option>`;
-  seasonFilter.value = String(seasons[0]); // default: newest season (2026 if present)
+  seasonFilter.value = seasons.includes(Number(previous))
+    ? previous
+    : String(seasons[0]); // default: newest season that actually has plays
 }
 
 function playsInSeason() {
-  if (seasonFilter.value === "all") return allPlays;
-  const s = Number(seasonFilter.value); // select values are strings!
-  return allPlays.filter((p) => p.season === s);
+  const pool = playsInType(); // <-- this is the fix: season now respects type
+  if (seasonFilter.value === "all") return pool;
+  const s = Number(seasonFilter.value);
+  return pool.filter((p) => p.season === s);
 }
 
 function buildWeekOptions() {
@@ -49,11 +60,12 @@ function buildWeekOptions() {
   weekFilter.innerHTML =
     `<option value="all">All weeks</option>` +
     weeks.map((w) => `<option value="${w}">Week ${w}</option>`).join("");
-  weekFilter.value = "all"; // reset — see below
+  weekFilter.value = "all";
 }
 
 // One pure filter: reads state + controls, returns a new array.
 function currentPlays() {
+  const seasonType = seasonTypeFilter.value;
   const season = seasonFilter.value;
   const week = weekFilter.value;
   const down = downFilter.value;
@@ -63,7 +75,8 @@ function currentPlays() {
       (season === "all" || p.season === Number(season)) &&
       (week === "all" || p.week === Number(week)) &&
       (down === "all" || p.down === Number(down)) &&
-      (type === "all" || p.play_type === type),
+      (type === "all" || p.play_type === type) &&
+      (seasonType === "all" || p.season_type === seasonType),
   );
 }
 
@@ -121,10 +134,23 @@ function renderSummary(plays) {
   statEpa.textContent = `${epa >= 0 ? "+" : ""}${epa.toFixed(3)}`;
   statEpa.className = `stat-card__value ${epa >= 0 ? "epa-pos" : "epa-neg"}`;
   statSuccess.textContent = `${(succ * 100).toFixed(1)}%`;
-  summaryScope.textContent = `${seasonLabel} · regular season only`;
+  const typeLabel =
+    seasonTypeFilter.value === "all"
+      ? "Regular season + playoffs"
+      : seasonTypeFilter.value === "POST"
+        ? "Playoffs only"
+        : "Regular season only";
+  summaryScope.textContent = `${seasonLabel} · ${typeLabel}`;
 }
 // Season changes rebuild the week list first, then update.
 // The others only need update, because their options never change.
+seasonTypeFilter.addEventListener("change", () => {
+  buildSeasonOptions(); // type decides which seasons exist
+  buildWeekOptions(); // season decides which weeks exist
+  update();
+});
+
+// Season changes rebuild the week list first, then update.
 seasonFilter.addEventListener("change", () => {
   buildWeekOptions();
   update();
