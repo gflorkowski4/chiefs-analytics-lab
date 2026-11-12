@@ -16,7 +16,7 @@ No rush. We have a lot of time to make this great. Features are added one at a t
 
 Direction decided 2026-11-10: all three, in this order — first the living front page, then the teaching series, then the interactive displays. Each feature gets a discussion first — what it is, who uses it, what data it needs, what done looks like — then it is built in small steps.
 
-- [ ] #6 Weekly pulse on the front page — the Monday-morning reason to visit
+- [x] #6 Weekly pulse on the front page — the Monday-morning reason to visit
 - [ ] #4 Success rate — the next stat in the series (EPA → success rate → CPOE → air yards → pressure rate → 4th-down math)
 - [ ] Interactive displays that answer a question — drive waterfall, down-and-distance heatmap, fourth-down decision curve, each tracing back to plays
 - [ ] #5 Weekly pipeline — keep 2026 current through the end of the season (the pulse rides on this)
