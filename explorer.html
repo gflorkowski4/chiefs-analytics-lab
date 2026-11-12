@@ -1,110 +1,388 @@
+
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Play Explorer — Chiefs Analytics Lab</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <nav>
-      <div class="brand">CHIEFS <span>ANALYTICS LAB</span></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#141419" />
+  <meta name="description" content="Explore Kansas City Chiefs pass and run plays. Filter by game situation, see EPA, and inspect individual snaps." />
+  <title>Play Explorer — Chiefs Analytics Lab</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="explorer.css" />
+  <script src="js/explorer.js" defer></script>
+</head>
+
+<body class="explorer-page" data-source="production">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- NAVIGATION -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="site-nav__inner">
+      <a class="brand" href="index.html" aria-label="Chiefs Analytics Lab home">
+        <span class="brand__mark" aria-hidden="true">
+          KC
+          <span class="brand__mark-line"></span>
+        </span>
+        <span class="brand__text">
+          CHIEFS <strong>ANALYTICS LAB</strong>
+          <small>THE GAME, BY THE NUMBERS</small>
+        </span>
+      </a>
+
       <div class="links">
         <a href="index.html">Home</a>
-        <a href="explorer.html">Plays</a>
-        <a href="explorer.html">EPA</a>
-        <a href="#">About</a>
-      </div>
-    </nav>
-
-    <main class="explorer">
-      <h1 class="card__title">Play Explorer</h1>
-      <p class="explorer-intro">
-        Every Kansas City pass and run from 2024, 2025 and 2026 — filter by
-        week, down, and play type. EPA and success update with the table.
-      </p>
-
-      <div class="filters">
-        <label>
-          Season Type
-          <select class="dropdown" id="seasonTypeFilter">
-            <option value="REG" selected>Regular season</option>
-            <option value="POST">Playoffs</option>
-            <option value="all">All</option>
-          </select>
-        </label>
-
-        <label>
-          Season
-          <select class="dropdown" id="seasonFilter"></select>
-        </label>
-        <label>
-          Week
-          <select class="dropdown" id="weekFilter"></select>
-        </label>
-        <label>
-          Down
-          <select class="dropdown" id="downFilter">
-            <option value="all">All downs</option>
-            <option value="1">1st</option>
-            <option value="2">2nd</option>
-            <option value="3">3rd</option>
-            <option value="4">4th</option>
-          </select>
-        </label>
-        <label>
-          Play type
-          <select class="dropdown" id="typeFilter">
-            <option value="all">All types</option>
-            <option value="pass">Pass</option>
-            <option value="run">Run</option>
-          </select>
-        </label>
+        <a class="links__active" href="explorer.html" aria-current="page">Play Explorer</a>
+        <a href="epa-post.html">EPA Explained</a>
+        <a href="index.html#about">About</a>
       </div>
 
-      <div class="summary-cards" id="summary" aria-live="polite">
-        <div class="stat-card">
-          <p class="stat-card__label">Plays</p>
-          <p class="stat-card__value" id="statPlays">—</p>
+      <a class="site-nav__action" href="epa-post.html">
+        What is EPA? <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </nav>
+
+  <main id="main" class="lab-shell">
+
+    <!-- EXPLORER HEADER -->
+    <header class="lab-heading container">
+      <div class="lab-heading__main">
+        <p class="lab-kicker">
+          <span class="lab-kicker__line"></span>
+          THE DATA LAB <span>/</span> INTERACTIVE EXPLORER
+        </p>
+
+        <h1>THE PLAY <em>EXPLORER.</em></h1>
+
+        <p>
+          Every Chiefs pass and run, with the context behind the numbers.
+          Narrow the field, find the moments that matter, and discover
+          what each snap was worth.
+        </p>
+      </div>
+
+      <div class="dataset-mark" aria-label="Data spans seasons 2024 through 2026">
+        <span class="dataset-mark__eyebrow">DATASET COVERAGE</span>
+        <strong>2024 <span>—</span> 2026</strong>
+        <small>
+          CHIEFS OFFENSE
+          <span class="dataset-mark__dot"></span>
+          PASS + RUN
+        </small>
+      </div>
+    </header>
+
+    <div class="container lab-content">
+
+      <!-- FILTER COMMAND CENTER -->
+      <section class="filter-panel" aria-labelledby="filter-heading">
+        <div class="filter-panel__heading">
+          <div class="filter-panel__title">
+            <span class="filter-panel__icon" aria-hidden="true">☷</span>
+            <div>
+              <h2 id="filter-heading">BUILD YOUR SLICE</h2>
+              <p>Choose a situation. Every number below updates.</p>
+            </div>
+          </div>
+
+          <button id="resetFilters" class="reset-button" type="button">
+            ↺ <span>Reset filters</span>
+          </button>
         </div>
-        <div class="stat-card">
-          <p class="stat-card__label">EPA / play</p>
-          <p class="stat-card__value" id="statEpa">—</p>
-        </div>
-        <div class="stat-card">
-          <p class="stat-card__label">Success</p>
-          <p class="stat-card__value" id="statSuccess">—</p>
-        </div>
-      </div>
-      <p class="summary-scope" id="summaryScope">Loading plays…</p>
 
-      <div class="table-scroll">
-        <table class="plays-table">
-          <thead>
-            <tr>
-              <th>Wk</th>
-              <th>Down</th>
-              <th>Field</th>
-              <th>Type</th>
-              <th>Yds</th>
-              <th>EPA</th>
-              <th>Success</th>
-              <th>Play</th>
-            </tr>
-          </thead>
-          <tbody id="playsBody"></tbody>
-        </table>
+        <div class="filter-grid">
+          <label class="filter-field" for="seasonTypeFilter">
+            <span>SEASON TYPE</span>
+            <select id="seasonTypeFilter">
+              <option value="REG">Regular season</option>
+              <option value="POST">Playoffs</option>
+              <option value="all">All games</option>
+            </select>
+          </label>
+
+          <label class="filter-field" for="seasonFilter">
+            <span>SEASON</span>
+            <select id="seasonFilter">
+              <option>Loading…</option>
+            </select>
+          </label>
+
+          <label class="filter-field" for="weekFilter">
+            <span>WEEK</span>
+            <select id="weekFilter">
+              <option value="all">All weeks</option>
+            </select>
+          </label>
+
+          <label class="filter-field" for="downFilter">
+            <span>DOWN</span>
+            <select id="downFilter">
+              <option value="all">All downs</option>
+              <option value="1">1st down</option>
+              <option value="2">2nd down</option>
+              <option value="3">3rd down</option>
+              <option value="4">4th down</option>
+            </select>
+          </label>
+
+          <label class="filter-field" for="typeFilter">
+            <span>PLAY TYPE</span>
+            <select id="typeFilter">
+              <option value="all">Pass + run</option>
+              <option value="pass">Pass</option>
+              <option value="run">Run</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="filter-panel__lower">
+          <label class="search-field" for="searchFilter">
+            <span class="sr-only">Search play descriptions</span>
+            <svg
+              viewBox="0 0 24 24"
+              width="17"
+              height="17"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <circle cx="10.5" cy="10.5" r="6.5" />
+              <path d="m16 16 5 5" />
+            </svg>
+            <input
+              id="searchFilter"
+              type="search"
+              placeholder="Search play descriptions… e.g. Mahomes, sack, touchdown"
+              autocomplete="off"
+            />
+          </label>
+
+          <div class="impact-tabs" role="group" aria-label="Filter by EPA impact">
+            <button class="impact-tab" type="button" data-impact="all" aria-pressed="true">
+              All EPA
+            </button>
+            <button class="impact-tab" type="button" data-impact="positive" aria-pressed="false">
+              ↗ Positive
+            </button>
+            <button class="impact-tab" type="button" data-impact="negative" aria-pressed="false">
+              ↘ Negative
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- FILTERED PERFORMANCE -->
+      <section class="result-section" aria-labelledby="results-heading">
+        <div class="section-line">
+          <div>
+            <p class="lab-section-number">01 / FILTERED PERFORMANCE</p>
+            <h2 id="results-heading">THE <span>RESULT.</span></h2>
+          </div>
+          <p id="summaryScope" class="summary-scope" aria-live="polite">
+            Loading plays…
+          </p>
+        </div>
+
+        <div class="summary-cards" id="summary">
+          <article class="result-card">
+            <span class="result-card__label">PLAYS FOUND</span>
+            <div class="result-card__num" id="statPlays">—</div>
+            <p>Matching your filters</p>
+            <span class="result-card__index">01</span>
+          </article>
+
+          <article class="result-card result-card--epa">
+            <span class="result-card__label">EPA / PLAY</span>
+            <div class="result-card__num" id="statEpa">—</div>
+            <p>Average expected points added</p>
+            <span class="result-card__index">02</span>
+          </article>
+
+          <article class="result-card">
+            <span class="result-card__label">SUCCESS RATE</span>
+            <div class="result-card__num" id="statSuccess">—</div>
+            <p>Successful play percentage</p>
+            <span class="result-card__index">03</span>
+          </article>
+
+          <article class="result-card">
+            <span class="result-card__label">PASS RATE</span>
+            <div class="result-card__num" id="statPassRate">—</div>
+            <p>Share of plays that are passes</p>
+            <span class="result-card__index">04</span>
+          </article>
+        </div>
+
+        <!-- ANALYST TAKEAWAY -->
+        <div class="analysis-strip">
+          <span class="analysis-strip__marker" aria-hidden="true">✳</span>
+          <div>
+            <strong id="insightTitle">ANALYST'S READ</strong>
+            <p id="insightText" aria-live="polite">
+              The takeaway for your current selection will appear here.
+            </p>
+          </div>
+          <a href="epa-post.html">UNDERSTAND EPA ↗</a>
+        </div>
+      </section>
+
+      <!-- PLAY TABLE -->
+      <section class="table-section" aria-labelledby="table-heading">
+        <div class="section-line section-line--table">
+          <div>
+            <p class="lab-section-number">02 / THE FILM ROOM</p>
+            <h2 id="table-heading">EVERY <span>SNAP.</span></h2>
+            <p class="section-line__description">
+              Click a play to inspect the details. Summaries use every matching
+              play, not just this page.
+            </p>
+          </div>
+
+          <div class="table-sort">
+            <label for="sortFilter">SORT PLAYS BY</label>
+            <select id="sortFilter">
+              <option value="original">Dataset order</option>
+              <option value="best">Highest EPA</option>
+              <option value="worst">Lowest EPA</option>
+              <option value="yards">Most yards</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-shell">
+          <div class="table-shell__top">
+            <div class="table-shell__count">
+              <span class="live-dot"></span>
+              <strong id="resultCount">LOADING</strong>
+              <span>PLAYS IN VIEW</span>
+            </div>
+            <span class="table-shell__hint">
+              SCROLL HORIZONTALLY TO SEE ALL COLUMNS →
+            </span>
+          </div>
+
+          <div
+            class="table-scroll"
+            role="region"
+            aria-label="Filtered play results"
+            tabindex="0"
+          >
+            <table class="plays-table">
+              <thead>
+                <tr>
+                  <th scope="col">SEASON / WK</th>
+                  <th scope="col">DOWN</th>
+                  <th scope="col">FIELD</th>
+                  <th scope="col">TYPE</th>
+                  <th scope="col">YDS</th>
+                  <th scope="col">EPA</th>
+                  <th scope="col">SUCCESS</th>
+                  <th scope="col">PLAY DESCRIPTION</th>
+                  <th scope="col">
+                    <span class="sr-only">Inspect play</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="playsBody"></tbody>
+            </table>
+          </div>
+
+          <!-- PAGINATION -->
+          <div class="table-shell__bottom">
+            <p id="paginationStatus" role="status">Loading results…</p>
+
+            <div class="page-controls">
+              <button id="prevPage" type="button" disabled>← Previous</button>
+              <span id="pageIndex">1 / 1</span>
+              <button id="nextPage" type="button" disabled>Next →</button>
+            </div>
+          </div>
+        </div>
+
+        <p class="dataset-note" id="datasetNote">
+          Source: chiefs_plays_all.json · Chiefs pass and run plays with a down
+          recorded. Figures reflect the selected filters.
+        </p>
+
+        <p class="load-error" id="loadError" role="alert" hidden>
+          The plays couldn't be loaded. Open the page through VS Code
+          Live Server and check that chiefs_plays_all.json sits beside
+          explorer.html.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <!-- INSPECT PLAY DIALOG -->
+  <dialog id="playDialog" class="play-dialog" aria-labelledby="dialogTitle">
+    <div class="play-dialog__top">
+      <div>
+        <span class="lab-section-number">PLAY BREAKDOWN</span>
+        <h2 id="dialogTitle">INSIDE THE SNAP.</h2>
       </div>
-      <p class="dataset-note">
-        Explorer dataset: 2,752 Chiefs pass & run plays with a down recorded,
-        across 2024, 2025 and 2026 · +0.064 EPA/play · 46.5% success.
+      <button id="closeDialog" class="dialog-close" type="button" aria-label="Close play detail">
+        ×
+      </button>
+    </div>
+
+    <div class="play-dialog__body">
+      <p id="dialogContext" class="play-dialog__context"></p>
+
+      <div class="play-dialog__score">
+        <span>EXPECTED POINTS ADDED</span>
+        <strong id="dialogEpa">—</strong>
+        <p id="dialogInterpretation"></p>
+      </div>
+
+      <div class="play-dialog__facts">
+        <div>
+          <span>PLAY TYPE</span>
+          <strong id="dialogType">—</strong>
+        </div>
+        <div>
+          <span>YARDS</span>
+          <strong id="dialogYards">—</strong>
+        </div>
+        <div>
+          <span>SUCCESS</span>
+          <strong id="dialogSuccess">—</strong>
+        </div>
+        <div>
+          <span>FIELD</span>
+          <strong id="dialogField">—</strong>
+        </div>
+      </div>
+
+      <div class="play-dialog__description">
+        <span>PLAY DESCRIPTION</span>
+        <p id="dialogDescription"></p>
+      </div>
+    </div>
+
+    <div class="play-dialog__foot">
+      <a href="epa-post.html">Learn what EPA means ↗</a>
+      <button id="closeDialogBottom" type="button">Close</button>
+    </div>
+  </dialog>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>CHIEFS <span>ANALYTICS LAB</span></strong>
+        <p>Learning football analytics in public.</p>
+      </div>
+      <p>
+        Independent educational project · Not affiliated with the
+        Kansas City Chiefs or NFL.
       </p>
-      <p class="load-error" id="loadError" hidden>
-        The plays file couldn't be loaded. If you're viewing this locally, open
-        the page through Live Server rather than as a file — and check that
-        chiefs_plays_all.json sits beside it.
-      </p>
-    </main>
-    <script src="js/explorer.js"></script>
-  </body>
+    </div>
+  </footer>
+</body>
 </html>

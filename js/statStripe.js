@@ -1,6 +1,6 @@
 
 /* ==========================================================
-   CHIEFS ANALYTICS LAB — OPTION C
+   CHIEFS ANALYTICS LAB - JS STAT STRIPE
    Live season dashboard + weekly EPA chart
    ========================================================== */
 
@@ -708,71 +708,6 @@ function showError(message) {
       "and serve the folder through a local HTTP server. " +
       "Then reload the page."
   );
-}
-
-/* ==========================================================
-   13. PREVIEW DATA (OPTIONAL)
-   ========================================================== */
-
-function makePreviewData() {
-  // Synthetic data for preview.html only.
-  // index.html always loads the real JSON.
-
-  const base = [
-    0.12,
-    0.19,
-    -0.03,
-    0.17,
-    0.08,
-    0.21,
-    0.05,
-    0.11,
-    0.28
-  ];
-
-  const counts = [
-    52, 54, 54,
-    52, 55, 51,
-    56, 54, 56
-  ];
-
-  const descriptions = [
-    "Pass over the middle on 3rd & 7 · first down",
-    "Run between the tackles on 2nd & 5",
-    "Deep completion on 1st & 10",
-    "Short pass on 3rd & 11 · tackled short",
-    "Outside run on 2nd & 2",
-    "Incomplete pass on 2nd & 8"
-  ];
-
-  const demo = [];
-
-  counts.forEach((count, w) => {
-    for (let i = 0; i < count; i++) {
-      const oscillation =
-        0.64 * Math.sin(i * 2.23 + w * 0.89);
-
-      const success =
-        ((i * 7 + w * 5) % count) <
-        Math.round(count * 0.49)
-          ? 1
-          : 0;
-
-      demo.push({
-        season: SEASON,
-        season_type: "REG",
-        week: w + 1,
-        epa: base[w] + oscillation,
-        success,
-        desc:
-          descriptions[
-            (i + w) % descriptions.length
-          ]
-      });
-    }
-  });
-
-  return demo;
 }
 
 /* ==========================================================

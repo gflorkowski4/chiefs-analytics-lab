@@ -1,0 +1,930 @@
+
+/* ==============================================================
+   CHIEFS ANALYTICS LAB — REUSABLE POST STYLES
+
+   Put site-wide styling in style.css.
+   Every article loads this file AFTER style.css.
+   Article-specific data/interactions belong in a separate JS file.
+   All post components are prefixed post- to avoid style collisions.
+   ============================================================== */
+
+.post-page {
+  --post-panel: #22222a;
+  --post-panel-raised: #292932;
+  --post-border: #41404b;
+  --post-copy: #d2cfd8;
+  --post-muted: #aaa6b3;
+  --post-width: 790px;
+  background: #141419;
+  color: #f7f6f4;
+}
+
+/* ==============================================================
+   1. ARTICLE HERO
+   ============================================================== */
+
+.post-page .post-hero {
+  background: radial-gradient(
+    ellipse 80% 110% at 95% 0%,
+    #30202a 0%,
+    #1e1b23 55%,
+    #141419 100%
+  );
+  border-bottom: 1px solid #35323d;
+}
+
+.post-page .post-hero__inner {
+  max-width: 1220px;
+  padding-block:
+    clamp(45px, 6vw, 90px)
+    clamp(42px, 5vw, 72px);
+}
+
+/* Breadcrumb navigation */
+
+.post-page .post-breadcrumb {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  color: #aaa5b2;
+  font-size: 12px;
+  margin-bottom: 36px;
+}
+
+.post-page .post-breadcrumb a {
+  text-decoration: none;
+  color: #c5c0ca;
+}
+
+.post-page .post-breadcrumb a:hover {
+  color: var(--gold);
+}
+
+.post-page .post-breadcrumb span[aria-hidden] {
+  color: var(--red-bright);
+}
+
+/* Article labels */
+
+.post-page .post-kicker,
+.post-page .post-section__number,
+.post-page .post-sidebar__eyebrow {
+  color: var(--red-bright);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.post-page .post-kicker {
+  margin: 0 0 22px;
+}
+
+/* Article title */
+
+.post-page .post-hero h1 {
+  font: 900 clamp(49px, 7vw, 95px)/0.93
+    "Barlow Condensed", Impact, sans-serif;
+  letter-spacing: -0.012em;
+  max-width: 1050px;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.post-page .post-hero h1 span {
+  color: var(--gold);
+}
+
+/* Article introduction */
+
+.post-page .post-lede {
+  max-width: 780px;
+  margin: 27px 0 25px;
+  color: #c9c4ce;
+  font-size: clamp(17px, 2vw, 20px);
+  line-height: 1.65;
+}
+
+.post-page .post-lede strong {
+  color: #fff;
+}
+
+/* Article metadata */
+
+.post-page .post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  color: #9e9ba6;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.post-page .post-meta__dot {
+  width: 4px;
+  height: 4px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+
+/* ==============================================================
+   2. ARTICLE LAYOUT
+   ============================================================== */
+
+.post-page .post-layout {
+  display: grid;
+  grid-template-columns:
+    minmax(0, var(--post-width))
+    minmax(200px, 245px);
+  gap: clamp(35px, 5vw, 88px);
+  align-items: start;
+  padding-block: 18px 90px;
+}
+
+.post-page .post-article {
+  min-width: 0;
+}
+
+/* ==============================================================
+   3. ARTICLE SECTIONS AND TYPOGRAPHY
+   ============================================================== */
+
+.post-page .post-section {
+  margin-top: 76px;
+  scroll-margin-top: 25px;
+}
+
+.post-page .post-section--first {
+  margin-top: 40px;
+}
+
+.post-page .post-section__heading {
+  margin-bottom: 17px;
+}
+
+.post-page .post-section__number {
+  display: block;
+  margin-bottom: 12px;
+}
+
+/* Section titles */
+
+.post-page .post-section h2 {
+  font: 900 clamp(34px, 4vw, 52px)/1.02
+    "Barlow Condensed", Impact, sans-serif;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.post-page .post-section h2 span {
+  color: var(--gold);
+}
+
+/* Long-form article copy */
+
+.post-page .post-section__sub,
+.post-page .post-body {
+  max-width: 72ch;
+  margin: 0 0 19px;
+  font-size: 16px;
+  color: var(--post-copy);
+  line-height: 1.8;
+}
+
+.post-page .post-section__sub {
+  color: var(--post-muted);
+}
+
+.post-page .post-body strong {
+  color: #fff;
+}
+
+/* ==============================================================
+   4. REUSABLE FORMULA / DEFINITION
+   ============================================================== */
+
+.post-page .post-formula {
+  background: linear-gradient(
+    130deg,
+    #302b33 0%,
+    #23232b 80%
+  );
+  border: 1px solid #51444a;
+  border-left: 4px solid var(--red);
+  border-radius: 8px;
+  padding: 23px 26px;
+  margin: 27px 0;
+}
+
+.post-page .post-formula__label,
+.post-page .post-formula__note {
+  margin: 0;
+  color: var(--post-muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.post-page .post-formula__label {
+  color: var(--gold);
+  letter-spacing: 0.15em;
+}
+
+.post-page .post-formula__equation {
+  font-size: clamp(17px, 2vw, 23px);
+  line-height: 1.45;
+  font-weight: 700;
+  margin: 14px 0 10px;
+}
+
+.post-page .post-formula__equation em {
+  font-style: normal;
+  color: var(--red-bright);
+}
+
+/* ==============================================================
+   5. REUSABLE STATISTIC CARDS
+   ============================================================== */
+
+.post-page .post-stat-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+  gap: 11px;
+  margin-top: 26px;
+}
+
+.post-page .post-stat {
+  min-width: 0;
+  background: var(--post-panel);
+  border: 1px solid var(--post-border);
+  border-radius: 7px;
+  padding: 18px 14px;
+}
+
+.post-page .post-stat__value {
+  margin: 0 0 10px;
+  font: 800 clamp(28px, 2.6vw, 38px)/1
+    "Barlow Condensed", sans-serif;
+  font-variant-numeric: tabular-nums;
+  color: #fff;
+}
+
+.post-page .post-stat__value--positive {
+  color: var(--green);
+}
+
+.post-page .post-stat__value--negative {
+  color: var(--danger);
+}
+
+.post-page .post-stat__label {
+  margin: 0 0 6px;
+  color: #e1dee5;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.post-page .post-stat__detail {
+  margin: 0;
+  color: var(--post-muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+/* ==============================================================
+   6. TAKEAWAYS, CALLOUTS, AND QUOTES
+   ============================================================== */
+
+.post-page .post-takeaway {
+  margin: 25px 0 0;
+  padding: 6px 0 6px 22px;
+  border-left: 4px solid var(--gold);
+}
+
+.post-page .post-takeaway__label {
+  color: var(--gold);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.post-page .post-takeaway p {
+  font-size: clamp(17px, 2vw, 21px);
+  line-height: 1.55;
+  color: #f1ebed;
+  margin: 9px 0 0;
+}
+
+/* Standard highlighted callout */
+
+.post-page .post-callout {
+  padding: 23px 25px;
+  background: #25232b;
+  border: 1px solid #48424a;
+  border-left: 4px solid var(--gold);
+  border-radius: 7px;
+}
+
+.post-page .post-callout p {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--post-copy);
+}
+
+.post-page .post-callout strong {
+  color: #fff;
+}
+
+/* Pull quote */
+
+.post-page .post-quote {
+  margin: 28px 0;
+  padding: 8px 0 8px 24px;
+  border-left: 4px solid var(--red);
+  color: #f2e9ee;
+  font: 700 clamp(20px, 3vw, 28px)/1.45
+    "Barlow Condensed", sans-serif;
+}
+
+/* Next article / next destination */
+
+.post-page .post-next {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  border: 1px solid #55414a;
+  border-radius: 8px;
+  background: #30212b;
+  padding: 21px 25px;
+  margin-top: 31px;
+}
+
+.post-page .post-next small {
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--red-bright);
+  letter-spacing: 0.13em;
+}
+
+.post-page .post-next strong {
+  font: 900 29px/1.1 "Barlow Condensed", sans-serif;
+  display: block;
+  margin-top: 7px;
+}
+
+.post-page .post-next > span:last-child {
+  font-size: 26px;
+  color: var(--gold);
+}
+
+.post-page .post-next:hover {
+  border-color: var(--gold);
+}
+
+/* ==============================================================
+   7. INTERACTIVE DRIVE COMPONENT
+   ============================================================== */
+
+.post-page .post-drive {
+  overflow: hidden;
+  background: var(--post-panel);
+  border: 1px solid var(--post-border);
+  border-radius: 9px;
+}
+
+.post-page .post-drive__header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 9px;
+  padding: 20px 22px;
+  background: #2e2b33;
+  border-bottom: 1px solid #46434f;
+}
+
+.post-page .post-drive__header strong {
+  font: 800 22px/1.2 "Barlow Condensed", sans-serif;
+}
+
+.post-page .post-drive__header strong span {
+  color: var(--red-bright);
+}
+
+.post-page .post-drive__header > span {
+  color: var(--post-muted);
+  font-size: 10px;
+  letter-spacing: 0.09em;
+  font-weight: 800;
+}
+
+/* Individual play buttons */
+
+.post-page .post-drive__play {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #3a3944;
+  text-align: left;
+  padding: 17px 20px;
+  display: grid;
+  grid-template-columns:
+    25px minmax(0, 1fr) auto;
+  column-gap: 13px;
+  row-gap: 9px;
+  color: #f0edf1;
+}
+
+.post-page .post-drive__play:hover,
+.post-page .post-drive__play[aria-pressed="true"] {
+  background: #302e38;
+}
+
+.post-page .post-drive__play[aria-pressed="true"] {
+  box-shadow: inset 3px 0 var(--gold);
+}
+
+.post-page .post-drive__num {
+  color: var(--post-muted);
+  font: 800 22px/1.2 "Barlow Condensed", sans-serif;
+}
+
+.post-page
+.post-drive__play[aria-pressed="true"]
+.post-drive__num {
+  color: var(--gold);
+}
+
+.post-page .post-drive__desc {
+  display: block;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.post-page .post-drive__note {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--post-muted);
+}
+
+.post-page .post-drive__epa {
+  font: 800 23px/1 "Barlow Condensed", sans-serif;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.post-page .post-drive__epa.is-positive {
+  color: var(--green);
+}
+
+.post-page .post-drive__epa.is-negative {
+  color: var(--danger);
+}
+
+/* EPA visual bars */
+
+.post-page .post-drive__bar-row {
+  display: flex;
+  grid-column: 2 / 4;
+  gap: 12px;
+  align-items: center;
+}
+
+.post-page .post-drive__bar-track {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  height: 7px;
+  border-radius: 5px;
+  background: #42404b;
+}
+
+.post-page .post-drive__bar-zero {
+  position: absolute;
+  left: var(--zero-pos, 18%);
+  top: -3px;
+  bottom: -3px;
+  width: 2px;
+  background: #a9a4b1;
+  z-index: 1;
+}
+
+.post-page .post-drive__bar-fill {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-radius: 4px;
+}
+
+.post-page .post-drive__bar-fill.is-positive {
+  background: var(--green);
+}
+
+.post-page .post-drive__bar-fill.is-negative {
+  background: var(--danger);
+}
+
+.post-page .post-drive__sign {
+  flex: 0 0 92px;
+  text-align: right;
+  color: #a6a3ae;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+/* Drive totals */
+
+.post-page .post-drive__footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 21px 22px;
+  background: #302e38;
+}
+
+.post-page .post-drive__footlabel {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  font-weight: 800;
+  color: var(--post-muted);
+}
+
+.post-page .post-drive__total {
+  display: block;
+  font: 800 33px/1.2 "Barlow Condensed", sans-serif;
+  color: var(--green);
+}
+
+.post-page .post-drive__small {
+  display: block;
+  color: var(--post-muted);
+  font-size: 11px;
+}
+
+.post-page .post-drive__cumulative {
+  font-size: 12px;
+  color: var(--post-copy);
+  margin: 0;
+}
+
+.post-page .post-drive__cumulative strong:last-child {
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ==============================================================
+   8. REUSABLE CHARTS AND TABLES
+   ============================================================== */
+
+.post-page .post-chart {
+  margin: 28px 0;
+  padding: 22px;
+  background: var(--post-panel);
+  border: 1px solid var(--post-border);
+  border-radius: 9px;
+}
+
+.post-page .post-chart__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.post-page .post-chart__head h3 {
+  margin: 0 0 6px;
+  font: 800 22px/1.1 "Barlow Condensed", sans-serif;
+}
+
+.post-page .post-chart__head p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--post-muted);
+}
+
+.post-page .post-chart__legend {
+  font-size: 11px;
+  white-space: nowrap;
+  color: #bbb7c3;
+}
+
+.post-page .post-chart__graphic {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.post-page .post-chart__graphic svg {
+  display: block;
+  width: 100%;
+  min-width: 580px;
+  height: auto;
+  margin-top: 18px;
+}
+
+/* SVG chart styles */
+
+.post-page .post-chart__axis-label,
+.post-page .post-chart__bye {
+  fill: #b4afba;
+  font-size: 12px;
+  font-family: "Barlow", sans-serif;
+}
+
+.post-page .post-chart__bye {
+  fill: var(--gold);
+  font-weight: 800;
+  font-size: 10px;
+}
+
+.post-page .post-chart__grid {
+  stroke: #48444e;
+  stroke-width: 1;
+}
+
+.post-page .post-chart__zero {
+  stroke: #aaa3ab;
+  stroke-width: 1.4;
+}
+
+.post-page .post-chart__bar--positive {
+  fill: var(--green);
+}
+
+.post-page .post-chart__bar--negative {
+  fill: var(--danger);
+}
+
+.post-page .post-chart__bar--best {
+  fill: var(--gold);
+}
+
+.post-page .post-chart figcaption {
+  margin-top: 12px;
+  font-size: 11px;
+  color: var(--post-muted);
+  line-height: 1.55;
+}
+
+/* Article data tables */
+
+.post-page .post-table-wrap {
+  overflow-x: auto;
+}
+
+.post-page .post-table {
+  width: 100%;
+  min-width: 380px;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.post-page .post-table caption {
+  padding-bottom: 12px;
+  text-align: left;
+  font: 800 19px/1.2 "Barlow Condensed", sans-serif;
+}
+
+.post-page .post-table th,
+.post-page .post-table td {
+  border-bottom: 1px solid #3e3b46;
+  padding: 10px 14px;
+}
+
+.post-page .post-table thead th {
+  text-align: left;
+  color: var(--post-muted);
+  font-size: 10px;
+  letter-spacing: 0.13em;
+}
+
+.post-page .post-table tbody th {
+  text-align: left;
+  font-weight: 600;
+}
+
+.post-page .post-table__number {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.post-page .post-table thead th:not(:first-child) {
+  text-align: right;
+}
+
+.post-page .post-table__best {
+  color: var(--gold);
+  font-weight: 800;
+}
+
+.post-page .post-table__bye {
+  color: var(--post-muted);
+  font-style: italic;
+}
+
+/* ==============================================================
+   9. SOURCES AND METHODOLOGY
+   ============================================================== */
+
+.post-page .post-sources {
+  border-top: 1px solid #45414b;
+  margin-top: 70px;
+  padding-top: 24px;
+}
+
+.post-page .post-sources h2 {
+  font: 800 18px "Barlow Condensed", sans-serif;
+  letter-spacing: 0.08em;
+  margin: 0 0 12px;
+}
+
+.post-page .post-sources p {
+  font-size: 12px;
+  color: var(--post-muted);
+  line-height: 1.7;
+  margin: 0 0 10px;
+}
+
+.post-page .post-sources code {
+  color: #e5d0b3;
+  overflow-wrap: anywhere;
+}
+
+/* ==============================================================
+   10. ARTICLE TABLE OF CONTENTS
+   ============================================================== */
+
+.post-page .post-sidebar {
+  min-width: 0;
+}
+
+.post-page .post-sidebar__sticky {
+  position: sticky;
+  top: 35px;
+  padding-top: 53px;
+}
+
+.post-page .post-sidebar__eyebrow {
+  color: var(--post-muted);
+  margin: 0 0 18px;
+}
+
+.post-page .post-toc {
+  display: grid;
+  gap: 4px;
+  border-left: 1px solid #514651;
+  padding-left: 15px;
+}
+
+.post-page .post-toc a {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  text-decoration: none;
+  color: #c5c0cb;
+  font-size: 13px;
+  padding: 10px 0;
+}
+
+.post-page .post-toc a span {
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.post-page .post-toc a:hover {
+  color: #fff;
+}
+
+/* Sidebar promotional card */
+
+.post-page .post-sidebar__card {
+  background: #30232a;
+  border: 1px solid #5b3d4a;
+  border-top: 3px solid var(--red);
+  padding: 20px;
+  border-radius: 7px;
+  margin-top: 34px;
+}
+
+.post-page .post-sidebar__card > span {
+  font-size: 10px;
+  color: var(--gold);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.post-page .post-sidebar__card strong {
+  display: block;
+  font: 900 25px/1.1 "Barlow Condensed", sans-serif;
+  margin-top: 13px;
+}
+
+.post-page .post-sidebar__card p {
+  font-size: 12px;
+  color: var(--post-muted);
+  line-height: 1.55;
+}
+
+.post-page .post-sidebar__card a {
+  color: var(--gold);
+  font-size: 11px;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+/* ==============================================================
+   11. RESPONSIVE DESIGN
+   ============================================================== */
+
+@media (max-width: 1050px) {
+  .post-page .post-layout {
+    grid-template-columns:
+      minmax(0, 1fr) 215px;
+    gap: 28px;
+  }
+
+  .post-page .post-stat-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 770px) {
+  .post-page .post-layout {
+    display: block;
+    padding-bottom: 65px;
+  }
+
+  .post-page .post-sidebar {
+    display: none;
+  }
+
+  .post-page .post-section {
+    margin-top: 60px;
+  }
+
+  .post-page .post-section--first {
+    margin-top: 28px;
+  }
+
+  .post-page .post-hero h1 {
+    font-size: clamp(45px, 9vw, 72px);
+  }
+}
+
+@media (max-width: 500px) {
+  .post-page .post-drive__header,
+  .post-page .post-drive__footer {
+    padding: 16px;
+  }
+
+  .post-page .post-drive__play {
+    padding: 16px 12px;
+    column-gap: 9px;
+  }
+
+  .post-page .post-drive__sign {
+    flex-basis: 74px;
+    font-size: 8px;
+  }
+
+  .post-page .post-stat-grid {
+    gap: 9px;
+  }
+
+  .post-page .post-stat {
+    padding: 14px 10px;
+  }
+
+  .post-page .post-stat__value {
+    font-size: 29px;
+  }
+
+  .post-page .post-formula,
+  .post-page .post-chart {
+    padding: 17px;
+  }
+}
+
+/* ==============================================================
+   12. ACCESSIBILITY
+   ============================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .post-page *,
+  .post-page *::before,
+  .post-page *::after {
+    transition: none !important;
+  }
+}
