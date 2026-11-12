@@ -51,7 +51,7 @@ const fmtEPA = n => (n >= 0 ? "+" : "") + n.toFixed(3);
 const fmtPct = n => (n * 100).toFixed(1) + "%";
 
 function renderPulse(week, stats, best, worst) {
-  document.getElementById("pulse-title").textContent = "Week " + week;
+  document.getElementById("pulse-title").textContent = "Week " + week + " Key Stats";
   document.getElementById("pulse-epa").textContent = fmtEPA(stats.epaPlay) + " EPA/play";
   document.getElementById("pulse-success").textContent = fmtPct(stats.success);
   document.getElementById("pulse-plays").textContent = stats.plays;

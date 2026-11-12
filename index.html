@@ -1,14 +1,22 @@
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Chiefs Analytics Lab</title>
+
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
-    <nav>
-      <div class="brand">CHIEFS <span>ANALYTICS LAB</span></div>
+    <!-- Navigation -->
+    <nav aria-label="Main navigation">
+      <div class="brand">
+        CHIEFS <span>ANALYTICS LAB</span>
+      </div>
+
       <div class="links">
         <a href="#">Home</a>
         <a href="#">Plays</a>
@@ -17,176 +25,264 @@
       </div>
     </nav>
 
-    <header class="hero">
-      <div class="hero__inner">
-        <p class="eyebrow">Kingdom Analytics / Football Intelligence</p>
+    <main>
+      <!-- Hero -->
+      <header class="hero">
+        <div class="hero__inner">
+          <p class="eyebrow">
+            Kingdom Analytics / Football Intelligence
+          </p>
 
-        <h1>Chiefs Analytics Lab</h1>
+          <h1>Chiefs Analytics Lab</h1>
 
-        <p class="description">
-          Explore every Chiefs pass and run from 2024–2026. Filter by down,
-          week, and play type to understand how each snap impacts expected
-          points.
+          <p class="description">
+            Explore every Chiefs pass and run from 2024–2026.
+            Filter by down, week, and play type to understand
+            how each snap impacts expected points.
+          </p>
+
+          <div class="hero__actions">
+            <a class="cta" href="explorer.html">
+              Explore Plays
+              <span aria-hidden="true">↗</span>
+            </a>
+
+            <p class="hero__scope">2024–2026 play data</p>
+          </div>
+
+          <hr class="hero__divider" aria-hidden="true" />
+
+          <!-- Hero Season Statistics -->
+          <section
+            class="hero-stat"
+            aria-labelledby="season-epa-label"
+          >
+            <div class="hero-stat__top">
+              <h2
+                class="hero-stat__label"
+                id="season-epa-label"
+              >
+                2026 Season / EPA per Play
+              </h2>
+
+              <svg
+                class="hero-stat__icon"
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M3 12h4l3-8 4 16 3-8h4"></path>
+              </svg>
+            </div>
+
+            <div class="hero-stat__headline">
+              <p class="hero-stat__value">+0.133</p>
+              <p class="hero-stat__positive">Positive EPA</p>
+            </div>
+
+            <dl class="hero-stat__metrics">
+              <div class="hero-stat__metric">
+                <dt>Total Plays</dt>
+                <dd>484</dd>
+              </div>
+
+              <div class="hero-stat__metric">
+                <dt>Success Rate</dt>
+                <dd>49.0%</dd>
+              </div>
+            </dl>
+
+            <p class="hero-stat__context">
+              Through Week 9 2026 · Regular + Playoffs · Pass and run plays
+            </p>
+          </section>
+        </div>
+      </header>
+
+      <!-- Dynamic Statistics Stripe -->
+      <section class="stat_stripe">
+        <div class="stat_stripe__header">
+          <span
+            class="stat_stripe__title"
+            id="pulse-title"
+          ></span>
+
+          <span class="stat_stripe__scope stat_season_type">
+            Regular season
+          </span>
+        </div>
+
+        <!-- Main Statistics -->
+        <div class="stat_stripe__cards">
+          <div class="stat_stripe__card">
+            <p class="stat_stripe__label">EPA</p>
+            <p class="stat_stripe__value" id="pulse-epa"></p>
+          </div>
+
+          <div class="stat_stripe__card">
+            <p class="stat_stripe__label">Success Rate</p>
+            <p class="stat_stripe__value" id="pulse-success"></p>
+          </div>
+
+          <div class="stat_stripe__card">
+            <p class="stat_stripe__label">Plays</p>
+            <p class="stat_stripe__value" id="pulse-plays"></p>
+          </div>
+        </div>
+
+        <!-- Best and Worst Plays -->
+        <div class="stat_stripe__cards">
+          <div class="stat_stripe__card">
+            <p class="stat_stripe__label">Best Play</p>
+            <p class="stat_stripe__value" id="pulse-best"></p>
+            <p
+              class="stat_stripe__value"
+              id="pulse-best-desc"
+            ></p>
+          </div>
+
+          <div class="stat_stripe__card">
+            <p class="stat_stripe__label">Worst Play</p>
+            <p class="stat_stripe__value" id="pulse-worst"></p>
+            <p
+              class="stat_stripe__value"
+              id="pulse-worst-desc"
+            ></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Analytics Tools -->
+      <section class="tools">
+        <div class="cards">
+          <!-- Play Explorer -->
+          <article class="card">
+            <h3 class="card__title">Play Explorer</h3>
+
+            <p>
+              Filter Chiefs pass and run plays from 2024, 2025,
+              and 2026 by week, down, and play type. EPA and
+              success update with the table.
+            </p>
+
+            <p>
+              <strong>
+                2,752 plays · +0.064 EPA/play · 46.5% success
+              </strong>
+            </p>
+
+            <p class="card__suggestion">
+              Start here: Week 17, 2024 — +0.337 EPA/play,
+              the best week in the set.
+            </p>
+
+            <a class="card__link" href="explorer.html">
+              Open the explorer →
+            </a>
+          </article>
+
+          <!-- EPA Breakdowns -->
+          <article class="card">
+            <h3 class="card__title">EPA Breakdowns</h3>
+
+            <p>
+              One game, drive by drive: what EPA says happened,
+              play by play, in plain English.
+            </p>
+
+            <p>
+              What is EPA, explained with Mahomes plays.
+            </p>
+
+            <p>
+              <strong>+0.053</strong> over 1,392 plays ·
+              <strong>Mahomes +0.109</strong>
+            </p>
+
+            <p class="card__suggestion">
+              2024 regular season · full offense
+            </p>
+
+            <a class="card__link" href="epa-post.html">
+              Read the breakdown →
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <!-- How It Works -->
+      <section class="how-it-works">
+        <h2>How it works</h2>
+
+        <div class="cards">
+          <article class="card">
+            <h3 class="card__title">1. Choose a play</h3>
+
+            <p>
+              Start in the Play Explorer: filter by down,
+              quarter, or situation and find the moment
+              you want to understand.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3 class="card__title">
+              2. See what it was worth
+            </h3>
+
+            <p>
+              Every play carries an EPA value — how many
+              expected points it added or cost. The breakdown
+              shows the math, not just the highlight.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3 class="card__title">3. Learn the stat</h3>
+
+            <p>
+              Each breakdown teaches one stat at a time,
+              through Chiefs plays — so the number and
+              the intuition grow together.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Featured Season Statistics -->
+      <section class="featured">
+        <p class="featured-stat__label">
+          2024 Chiefs offense — EPA per play
         </p>
 
-        <div class="hero__actions">
-          <a class="cta" href="explorer.html">
-            Explore Plays <span aria-hidden="true">↗</span>
-          </a>
+        <p class="featured-stat__value">+0.053</p>
 
-          <p class="hero__scope">2024–2026 play data</p>
-        </div>
+        <p class="featured-stat__context">
+          Across all 1,392 scrimmage plays in 2024
+          (50.2% success). The Play Explorer's +0.064
+          covers a different set — the 2,752 pass and
+          run plays with a down recorded across 2024,
+          2025 and 2026 — so the two numbers describe
+          different sets, not a disagreement.
+        </p>
+      </section>
+    </main>
 
-        <hr class="hero__divider" aria-hidden="true" />
-
-        <section class="hero-stat" aria-labelledby="season-epa-label">
-          <div class="hero-stat__top">
-            <h2 class="hero-stat__label" id="season-epa-label">
-              2026 Season / EPA per Play
-            </h2>
-
-            <svg
-              class="hero-stat__icon"
-              width="22"
-              height="22"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M3 12h4l3-8 4 16 3-8h4"></path>
-            </svg>
-          </div>
-
-          <div class="hero-stat__headline">
-            <p class="hero-stat__value">+0.133</p>
-            <p class="hero-stat__positive">Positive EPA</p>
-          </div>
-
-          <dl class="hero-stat__metrics">
-            <div class="hero-stat__metric">
-              <dt>Total Plays</dt>
-              <dd>484</dd>
-            </div>
-
-            <div class="hero-stat__metric">
-              <dt>Success Rate</dt>
-              <dd>49.0%</dd>
-            </div>
-          </dl>
-
-          <p class="hero-stat__context">
-            Through Week 9 2026 · Regular + Playoffs · Pass and run plays
-          </p>
-        </section>
-      </div>
-    </header>
-    <section class="stat_stripe">
-      <div class="stat_stripe__header">
-        <span class="stat_stripe__title" id="pulse-title"></span>
-        <span class="stat_stripe__scope stat_season_type">Regular season</span>
-      </div>
-      <div class="stat_stripe__cards">
-        <div class="stat_stripe__card">
-          <p class="stat_stripe__label">EPA</p>
-          <p class="stat_stripe__value" id="pulse-epa"></p>
-        </div>
-        <div class="stat_stripe__card">
-          <p class="stat_stripe__label">Success Rate</p>
-          <p class="stat_stripe__value" id="pulse-success"></p>
-        </div>
-        <div class="stat_stripe__card">
-          <p class="stat_stripe__label">Plays</p>
-          <p class="stat_stripe__value" id="pulse-plays"></p>
-        </div>
-      </div>
-
-    <section class="stat_stripe__cards">
-        <div class="stat_stripe__card">
-          <p class="stat_stripe__label">Best Play</p>
-          <p class="stat_stripe__value" id="pulse-best"></p>
-          <p class="stat_stripe__value" id="pulse-best-desc"></p>
-        </div>
-          <p class="stat_stripe__label">Worst Play</p>
-          <p class="stat_stripe__value" id="pulse-worst"></p>
-          <p class="stat_stripe__value" id="pulse-worst-desc"></p>
-    </section>
-    </section>
-         
-    <section class="tools">
-      <div class="cards">
-        <section class="card">
-          <h3 class="card__title">Play Explorer</h3>
-          <p>
-            Filter Chiefs pass and run plays from 2024, 2025 and 2026 by week,
-            down, and play type. EPA and success update with the table.
-          </p>
-          <p><strong>2,752 plays · +0.064 EPA/play · 46.5% success</strong></p>
-          <p class="card__suggestion">
-            Start here: Week 17, 2024 — +0.337 EPA/play, the best week in the
-            set.
-          </p>
-
-          <a class="card__link" href="explorer.html">Open the explorer →</a>
-        </section>
-        <section class="card">
-          <h3 class="card__title">EPA Breakdowns</h3>
-          <p>
-            One game, drive by drive: what EPA says happened, play by play, in
-            plain English.
-          </p>
-          <p>What is EPA, explained with Mahomes plays.</p>
-          <p>
-            <strong>+0.053</strong> over 1,392 plays ·
-            <strong>Mahomes +0.109</strong>
-          </p>
-          <p class="card__suggestion">2024 regular season · full offense</p>
-          <a class="card__link" href="epa-post.html">Read the breakdown →</a>
-        </section>
-      </div>
-    </section>
-    <section class="how-it-works">
-      <h2>How it works</h2>
-      <div class="cards">
-        <article class="card">
-          <h3 class="card__title">1. Choose a play</h3>
-          <p>
-            Start in the Play Explorer: filter by down, quarter, or situation
-            and find the moment you want to understand.
-          </p>
-        </article>
-        <article class="card">
-          <h3 class="card__title">2. See what it was worth</h3>
-          <p>
-            Every play carries an EPA value — how many expected points it added
-            or cost. The breakdown shows the math, not just the highlight.
-          </p>
-        </article>
-        <article class="card">
-          <h3 class="card__title">3. Learn the stat</h3>
-          <p>
-            Each breakdown teaches one stat at a time, through Chiefs plays — so
-            the number and the intuition grow together.
-          </p>
-        </article>
-      </div>
-    </section>
-    <section class="featured">
-      <p class="featured-stat__label">2024 Chiefs offense — EPA per play</p>
-      <p class="featured-stat__value">+0.053</p>
-      <p class="featured-stat__context">
-        Across all 1,392 scrimmage plays in 2024 (50.2% success). The Play
-        Explorer's +0.064 covers a different set — the 2,752 pass and run plays
-        with a down recorded across 2024, 2025 and 2026 — so the two numbers
-        describe different sets, not a disagreement.
-      </p>
-    </section>
-    <script src="js/statStripe.js"></script>
+    <!-- Footer -->
     <footer class="site-footer">
-      <p>Chiefs Analytics Lab — learning football analytics in public.</p>
+      <p>
+        Chiefs Analytics Lab — learning football
+        analytics in public.
+      </p>
     </footer>
+
+    <!-- JavaScript -->
+    <script src="js/statStripe.js"></script>
   </body>
 </html>
