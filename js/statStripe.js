@@ -183,6 +183,10 @@ function playDescription(play) {
     let line = `${play.rusher} ${play.play_type} for ${play.yards} YDS`;
     if (play.touchdown) {
       line += " TOUCHDOWN";
+    } if (play.fumble) {
+      line += ", fumbled";
+    } if (play.fumble_lost) {
+      line += ` and recovered by ${play.defteam}.`;
     }
     return line;
   }
@@ -214,7 +218,7 @@ function renderPulse(week, stats, best, worst) {
 
   setText(
     "pulse-worst-desc",
-    worst.desc || "Play description not available in the dataset.",
+    playDescription(worst) || "Play description not available in the dataset.",
   );
 
   setPolarity($("pulse-epa"), stats.epaPlay);
