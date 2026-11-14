@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="icon" href="data:," />
+    <title>What Is Success Rate? — Chiefs Analytics Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #17171c;
+        --surface: #1f1f26;
+        --surface-2: #26262e;
+        --ink: #d9d9d9;
+        --ink-soft: #c9c5bd;
+        --muted: #8c8c8c;
+        --line: #2e2e38;
+        --red: #e31837;
+        --gold: #ffb81c;
+        --pos: #4ecb7d;
+        --neg: #ff5f73;
+        --shadow-card: 8px 8px 16px #0c0c10, -8px -8px 16px #2e2e38;
+        --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        --radius: 10px;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+        font-size: 17px;
+        line-height: 1.6;
+      }
+      nav {
+        display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+        gap: 8px 20px; padding: 18px 24px; border-bottom: 1px solid var(--line);
+      }
+      nav .brand {
+        font-family: "Barlow Condensed", "Barlow", sans-serif;
+        font-size: 24px; font-weight: 700; letter-spacing: 0.06em;
+      }
+      nav .brand span { color: var(--gold); }
+      nav .links { display: flex; gap: 20px; }
+      nav .links a { color: var(--ink-soft); text-decoration: none; font-weight: 600; }
+      nav .links a:hover { color: var(--gold); }
+      .page { max-width: 760px; margin: 0 auto; padding: 28px 20px 72px; }
+      @media (min-width: 720px) { .page { padding: 44px 28px 88px; } }
+      .series-line {
+        font-size: 15px; font-weight: 600; letter-spacing: 0.22em;
+        text-transform: uppercase; color: var(--neg); margin: 0 0 10px;
+      }
+      h1 {
+        font-family: "Barlow Condensed", "Barlow", sans-serif;
+        font-weight: 700; font-size: clamp(42px, 9vw, 64px);
+        line-height: 0.98; margin: 0 0 18px; text-wrap: balance;
+        text-transform: uppercase;
+      }
+      h1 .accent { color: var(--gold); }
+      .byline {
+        display: flex; flex-wrap: wrap; gap: 6px 18px; color: var(--muted);
+        font-size: 14.5px; margin: 0 0 30px; padding-bottom: 22px;
+        border-bottom: 2px solid var(--ink);
+      }
+      .lede { font-size: 20px; line-height: 1.55; margin: 0 0 8px; }
+      .lede strong { font-weight: 700; }
+      .rule-card {
+        margin: 26px 0 8px; background: var(--surface); border-radius: var(--radius);
+        box-shadow: var(--shadow-card), var(--shadow-inset); padding: 22px 24px;
+      }
+      .rule-card .label {
+        font-size: 12.5px; font-weight: 700; letter-spacing: 0.14em;
+        text-transform: uppercase; color: var(--muted); margin: 0 0 8px;
+      }
+      .rule-card .eq {
+        font-family: "Barlow Condensed", "Barlow", sans-serif;
+        font-size: clamp(20px, 5vw, 26px); font-weight: 600; line-height: 1.4; margin: 0;
+      }
+      .rule-card .eq .hl { color: var(--gold); }
+      .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 28px 0 6px; }
+      @media (min-width: 640px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+      .stat {
+        background: var(--surface); border-radius: var(--radius);
+        box-shadow: var(--shadow-card), var(--shadow-inset); padding: 16px 16px 14px;
+      }
+      .stat .value {
+        font-family: "Barlow Condensed", "Barlow", sans-serif;
+        font-size: 34px; font-weight: 700; line-height: 1; margin: 0 0 5px;
+      }
+      .stat .value.pos { color: var(--pos); }
+      .stat .cap { font-size: 13px; line-height: 1.4; color: var(--ink-soft); margin: 0; }
+      section { margin-top: 52px; }
+      .section-num {
+        font-family: "Barlow Condensed", "Barlow", sans-serif;
+        color: var(--muted); font-size: 18px; font-weight: 600; letter-spacing: 0.2em; margin: 0 0 4px;
+      }
+      h2 {
+        font-family: "Barlow Condensed", "Barlow", sans-serif;
+        font-size: clamp(30px, 6.4vw, 40px); font-weight: 700; line-height: 1.05;
+        margin: 0 0 6px; color: var(--gold); text-transform: uppercase;
+      }
+      .section-sub { color: var(--muted); font-size: 15px; margin: 0 0 20px; }
+      p.body { margin: 0 0 16px; }
+      p.body:last-child { margin-bottom: 0; }
+      .rule-grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin: 22px 0 6px; }
+      @media (min-width: 640px) { .rule-grid { grid-template-columns: repeat(3, 1fr); } }
+      .rule-cell {
+        background: var(--surface); border-radius: var(--radius);
+        box-shadow: var(--shadow-card), var(--shadow-inset); padding: 18px;
+      }
+      .rule-cell .down {
+        font-family: "Barlow Condensed", "Barlow", sans-serif;
+        font-size: 21px; font-weight: 700; color: var(--gold); margin: 0 0 2px;
+        text-transform: uppercase; letter-spacing: 0.04em;
+      }
+      .rule-cell .pct {
+        font-family: "Barlow Condensed", "Barlow", sans-serif;
+        font-size: 40px; font-weight: 700; line-height: 1; margin: 0 0 6px;
+      }
+      .rule-cell .why { font-size: 14.5px; line-height: 1.45; color: var(--ink-soft); margin: 0; }
+      .play-card {
+        background: var(--surface); border-radius: var(--radius);
+        box-shadow: var(--shadow-card), var(--shadow-inset);
+        padding: 22px 24px; margin-top: 22px;
+      }
+      .play-card .play-label {
+        font-size: 12.5px; font-weight: 700; letter-spacing: 0.14em;
+        text-transform: uppercase; color: var(--muted); margin: 0 0 8px;
+      }
+      .play-card .play-line {
+        font-family: "Barlow Condensed", "Barlow", sans-serif;
+        font-size: clamp(22px, 5vw, 28px); font-weight: 600; line-height: 1.25; margin: 0 0 10px;
+      }
+      .play-card p { margin: 0 0 12px; }
+      .play-card p:last-child { margin-bottom: 0; }
+      .verdict { font-weight: 700; }
+      .verdict.ok { color: var(--pos); }
+      .verdict.no { color: var(--neg); }
+      .insight {
+        margin-top: 22px; border-left: 4px solid var(--gold);
+        padding: 4px 0 4px 18px; font-size: 19px; line-height: 1.55;
+      }
+      .insight p { margin: 0; }
+      .data-table { width: 100%; border-collapse: collapse; margin-top: 22px; font-size: 15.5px; }
+      .data-table caption {
+        text-align: left; font-family: "Barlow Condensed", "Barlow", sans-serif;
+        font-size: 19px; font-weight: 600; padding-bottom: 8px;
+      }
+      .data-table th, .data-table td { padding: 7px 10px; border-bottom: 1px solid var(--line); text-align: left; }
+      .data-table th {
+        font-size: 12.5px; letter-spacing: 0.1em; text-transform: uppercase;
+        color: var(--muted); font-weight: 700;
+      }
+      .data-table td.num, .data-table th.num { text-align: right; font-variant-numeric: tabular-nums; }
+      .limits {
+        background: var(--surface); border-radius: var(--radius);
+        box-shadow: var(--shadow-card), var(--shadow-inset); padding: 22px 24px; margin-top: 22px;
+      }
+      .limits p { margin: 0 0 12px; font-size: 17.5px; line-height: 1.6; }
+      .limits p:last-child { margin-bottom: 0; }
+      footer {
+        margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line);
+        color: var(--muted); font-size: 14px; line-height: 1.6;
+      }
+      footer p { margin: 0 0 8px; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.92em; }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="brand">CHIEFS <span>ANALYTICS LAB</span></div>
+      <div class="links">
+        <a href="index.html">Home</a>
+        <a href="explorer.html">Plays</a>
+        <a href="epa-post.html">EPA</a>
+        <a href="#">About</a>
+      </div>
+    </nav>
+    <main class="page">
+      <p class="series-line">Chiefs Analytics Lab · Stat No. 2</p>
+      <h1>Success rate: did the play <span class="accent">do its job?</span></h1>
+      <p class="byline">
+        <span>Kansas City Chiefs · 2024–2026 seasons</span>
+        <span>Data: nflfastR play-by-play</span>
+      </p>
+
+      <p class="lede">
+        <strong>Week 9 against the Jets, the Chiefs' offense succeeded on 56.2% of its plays.</strong>
+        Not scored on. Not gained big yards on. <em>Succeeded</em> on — 36 of 64 plays did the job
+        they were asked to do, series after series, and the drives kept moving. That is a big
+        reason the EPA from that game looked so good: before a play can add a lot of points, it
+        usually has to keep the drive alive first. Success rate is the stat that counts how
+        often that happens.
+      </p>
+
+      <div class="rule-card" role="note" aria-label="Success rate in one line">
+        <p class="label">In one line</p>
+        <p class="eq">Success rate = the share of plays that gained <span class="hl">enough</span> — and “enough” depends on the down.</p>
+      </div>
+
+      <div class="stats" aria-label="Key numbers from the post">
+        <div class="stat">
+          <p class="value pos">56.2%</p>
+          <p class="cap">Chiefs success rate, Week 9 vs. the Jets — 36 of 64 plays</p>
+        </div>
+        <div class="stat">
+          <p class="value">49.0%</p>
+          <p class="cap">Chiefs success rate, 2026 through Week 9 — 237 of 484 plays</p>
+        </div>
+        <div class="stat">
+          <p class="value">47.7%</p>
+          <p class="cap">Chiefs success rate, 2024 regular season — 1,067 plays</p>
+        </div>
+        <div class="stat">
+          <p class="value">46.5%</p>
+          <p class="cap">Blended across the full explorer set — 2,752 plays</p>
+        </div>
+      </div>
+
+      <section aria-labelledby="rule-h">
+        <p class="section-num">01</p>
+        <h2 id="rule-h">The 40 / 60 / 100 rule</h2>
+        <p class="section-sub">One rule, three thresholds. If a play clears its threshold, it counts as a success — yes or no, nothing in between.</p>
+        <p class="body">
+          EPA asks <em>how much</em> a play helped. Success rate asks a blunter question:
+          did the play gain enough of the yards it needed? “Enough” is a share of the
+          distance to the first-down marker, and the share gets steeper as the downs run out:
+        </p>
+        <div class="rule-grid">
+          <div class="rule-cell">
+            <p class="down">1st down</p>
+            <p class="pct">40%</p>
+            <p class="why">Gain at least 40% of the yards to go. On 1st &amp; 10, that is 4 yards — stay ahead of the chains and the series is in good shape.</p>
+          </div>
+          <div class="rule-cell">
+            <p class="down">2nd down</p>
+            <p class="pct">60%</p>
+            <p class="why">Gain at least 60% of the yards to go. On 2nd &amp; 10, that is 6 yards — close enough that one more play can finish the job.</p>
+          </div>
+          <div class="rule-cell">
+            <p class="down">3rd &amp; 4th down</p>
+            <p class="pct">100%</p>
+            <p class="why">Get all of it. Anything short leaves the first down unmade, so anything short is a failure — even by a yard.</p>
+          </div>
+        </div>
+        <p class="body">
+          That is the whole stat. Grade every play yes or no by that rule, count the yeses,
+          and divide by the number of plays. Week 9: 36 yeses out of 64 plays is 56.2%.
+          No model, no projection — just a grade on every snap, added up.
+        </p>
+      </section>
+
+      <section aria-labelledby="plays-h">
+        <p class="section-num">02</p>
+        <h2 id="plays-h">Two plays, two verdicts</h2>
+        <p class="section-sub">Where EPA and success rate agree — and where they don't. That disagreement is the point of having both.</p>
+
+        <div class="play-card">
+          <p class="play-label">Play 1 · Where they agree · Week 9 vs. the Jets</p>
+          <p class="play-line">Mahomes → Walker, 25 yd TD</p>
+          <p>
+            A 25-yard touchdown clears every bar there is. It gains far more than the
+            distance it needed, so success rate grades it a plain
+            <span class="verdict ok">success</span> — and EPA loves it too, at
+            <strong>+3.77</strong>, the best play of the Chiefs' Week 9. When a play is
+            this good, the two stats tell the same story in two different languages:
+            EPA says how much it was worth, success rate just says <em>yes</em>.
+          </p>
+        </div>
+
+        <div class="play-card">
+          <p class="play-label">Play 2 · Where they disagree · The 3rd-down trap</p>
+          <p class="play-line">3rd &amp; 10, a gain of 8 yards</p>
+          <p>
+            Now grade the hardest case in the rule. It is 3rd &amp; 10, and the play gains
+            8 yards. On the broadcast that looks fine — it is a solid gain, it moves the
+            offense down the field, and a yards column would call it a good play. EPA is
+            at least somewhat forgiving here too: the yards and the field position count
+            for something in its math.
+          </p>
+          <p>
+            Success rate is not forgiving at all. On 3rd down the rule is 100% — the play
+            needed 10 yards and got 8, so it is graded
+            <span class="verdict no">not a success</span>, full stop. The drive is left
+            facing 4th &amp; 2 instead of a fresh set of downs, and the stat refuses to
+            hand out partial credit for getting close.
+          </p>
+          <p>
+            Neither stat is wrong. They are cousins, not twins: EPA measures value on a
+            sliding scale, success rate measures reliability with a hard line. An offense
+            full of almost-conversions can post respectable yardage and still stall —
+            success rate is the stat that catches it.
+          </p>
+        </div>
+
+        <div class="insight">
+          <p>EPA tells you how big the play was. Success rate tells you whether the drive survived it.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="downs-h">
+        <p class="section-num">03</p>
+        <h2 id="downs-h">Success, down by down</h2>
+        <p class="section-sub">2024 regular season — and a warning label on the last row.</p>
+        <p class="body">
+          Split the 2024 regular season by down and a pattern shows up: the Chiefs
+          succeeded more often as the down got later. That is partly the offense
+          converting when it had to — and partly selection. On 3rd down, every play is
+          called to get the whole distance. On 4th down, teams mostly only go for it
+          when the distance is short and the situation suits them, which stacks the
+          deck before the ball is even snapped.
+        </p>
+        <table class="data-table">
+          <caption>Chiefs success rate by down — 2024 regular season</caption>
+          <thead>
+            <tr><th scope="col">Down</th><th scope="col" class="num">Success rate</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1st down</td><td class="num">44.7%</td></tr>
+            <tr><td>2nd down</td><td class="num">47.5%</td></tr>
+            <tr><td>3rd down</td><td class="num">52.4%</td></tr>
+            <tr><td>4th down</td><td class="num">70.6%</td></tr>
+          </tbody>
+        </table>
+        <p class="body" style="margin-top:16px">
+          Read that 70.6% with care: it rests on only <strong>17 fourth-down plays</strong>
+          all season. A sample that small swings wildly — a couple of plays the other
+          way and the number drops fast. It says the Chiefs chose their 4th-down spots
+          well in 2024; it does not say they would succeed seven times out of ten if
+          they went for it all the time.
+        </p>
+        <p class="body">
+          For the season as a whole, the Chiefs finished 2024 at 47.7% on 1,067 plays,
+          dipped to 44.4% in 2025 on 1,045 plays, and sit at 49.0% in 2026 through
+          Week 9 — 237 successes in 484 plays. Across all three seasons in the
+          explorer, the blended rate is 46.5% on 2,752 plays: a little under half of
+          everything the offense runs clears the bar.
+        </p>
+      </section>
+
+      <section aria-labelledby="limits-h">
+        <p class="section-num">04</p>
+        <h2 id="limits-h">What success rate misses</h2>
+        <p class="section-sub">A yes-or-no grade is the stat's strength — and its blind spot.</p>
+        <div class="limits">
+          <p>
+            Success rate does not care how big the play was. A 4-yard gain on 1st &amp; 10
+            and a 40-yard gain on 1st &amp; 10 both clear the 40% bar, so both count
+            exactly the same: one success. The checkdown that barely keeps a drive alive
+            and the bomb that changes the game are worth the same single point in this
+            stat — EPA is the one that tells them apart.
+          </p>
+          <p>
+            It also flattens context. A play that barely converts and a play that scores
+            both earn a yes, wherever they happen on the field. That is why the two
+            stats belong together: success rate for how <em>often</em> the offense did
+            its job, EPA for how <em>much</em> it mattered when it did.
+          </p>
+        </div>
+      </section>
+
+      <section aria-labelledby="explorer-h">
+        <p class="section-num">05</p>
+        <h2 id="explorer-h">Coming to the explorer</h2>
+        <p class="section-sub">The next stat in the series gets its own column.</p>
+        <p class="body">
+          Success rate is coming to the Lab's play explorer as its own column, next to
+          EPA — one mark per play showing whether that snap cleared the 40 / 60 / 100
+          bar. Filter to Week 9 and you will be able to count the same story this post
+          opened with: 36 successes in 64 plays, each one traceable to the snap that
+          earned it.
+        </p>
+        <p class="body">
+          Now you know how to read it. When the column lands, you will not just see a
+          percentage — you will know exactly what a play had to do to earn its yes,
+          and why an 8-yard gain can still be a no.
+        </p>
+      </section>
+
+      <footer>
+        <p><strong>Numbers used here.</strong> Week 9 vs. the Jets: 56.2% (36 of 64 plays). 2026 through Week 9: 49.0% (237 of 484). 2024 regular season: 47.7% (1,067 plays); by down — 1st 44.7%, 2nd 47.5%, 3rd 52.4%, 4th 70.6% on 17 plays. 2025: 44.4% (1,045 plays). Blended: 46.5% (2,752 plays). Week 9's best play by EPA: Mahomes → Walker, 25-yard touchdown, +3.77.</p>
+        <p>Source: nflfastR play-by-play, Kansas City Chiefs plays in the Lab explorer set.</p>
+      </footer>
+    </main>
+  </body>
+</html>
