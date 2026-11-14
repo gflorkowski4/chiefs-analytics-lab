@@ -1,5 +1,3 @@
-console.log("waterfall.js loaded");
-
 async function loadDrive() {
   const response = await fetch("chiefs_plays_all.json");
   const allPlays = await response.json();
@@ -14,9 +12,50 @@ async function loadDrive() {
       epa: p.epa,
       success: p.success,
       label: p.desc,
+      play_type: p.play_type,
+      passer: p.passer,
+      receiver: p.receiver,
+      rusher: p.rusher,
+      touchdown: p.touchdown,
+      sack: p.sack,
+      incomplete_pass: p.incomplete_pass,
+      defteam: p.defteam,
+      fumble: p.fumble,
+      fumble_lost: p.fumble_lost,
     }));
 
   return drivePlays;
+}
+
+
+/* Human-readable play description, as in js/statStripe.js */
+function playDescription(play) {
+  if (play.play_type === "pass") {
+    let line = `${play.passer} ${play.play_type} to ${play.receiver} for ${play.yards} YDS`;
+    if (play.touchdown) {
+      line += " TOUCHDOWN";
+    }
+    if (play.sack) {
+      line = `${play.defteam} sacked ${play.passer} for ${play.yards} YDS`;
+    }
+    if (play.incomplete_pass) {
+      line = `${play.passer} ${play.play_type} incomplete`;
+    }
+    return line;
+  }
+  if (play.play_type === "run") {
+    let line = `${play.rusher} ${play.play_type} for ${play.yards} YDS`;
+    if (play.touchdown) {
+      line += " TOUCHDOWN";
+    }
+    if (play.fumble) {
+      line += ", fumbled";
+    }
+    if (play.fumble_lost) {
+      line += ` and recovered by ${play.defteam}.`;
+    }
+    return line;
+  }
 }
 
 function renderField(drivePlays) {
@@ -27,7 +66,7 @@ function renderField(drivePlays) {
     spike.classList.add("spike");
     spike.classList.add(play.epa >= 0 ? "spike--positive" : "spike--negative");
     spike.style.left = (100 - play.yardline) + "%";
-    spike.style.height = Math.abs(play.epa) / 2.44 * 100 + "%";
+    spike.style.height = (Math.abs(play.epa) / 2.44) * 50 + "%";
     spike.addEventListener("click", () => {
       openModal(play);
     });
@@ -37,7 +76,7 @@ function renderField(drivePlays) {
 
 function openModal(play) {
   const modal = document.getElementById("modal");
-  const content = document.getElementById("modalContent");
+  const content = document.getElementById("modalDetails");
 
   const before = play.totalAfterPlay - play.epa;
   const yardlineText =
@@ -46,7 +85,12 @@ function openModal(play) {
       : "NYJ " + play.yardline;
 
   content.innerHTML =
-    "<h3>" + play.label + "</h3>" +
+    "<h3>" +
+    (playDescription(play) || "Play description not available") +
+    "</h3>" +
+    '<p class="modal__desc">' +
+    play.label +
+    "</p>" +
     "<p><strong>EPA:</strong> " + play.epa.toFixed(2) + "</p>" +
     "<p><strong>Down &amp; distance:</strong> " + play.down + " &amp; " + play.distance + "</p>" +
     "<p><strong>Yard line:</strong> " + yardlineText + "</p>" +

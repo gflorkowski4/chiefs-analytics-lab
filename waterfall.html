@@ -6,10 +6,10 @@
     <meta name="theme-color" content="#141419" />
     <meta
       name="description"
-      content="Explore Kansas City Chiefs plays, expected points added, and the stories behind every snap."
+      content="Drive 4, Week 9 vs Jets: every play of an 82-yard Chiefs touchdown drive, shown as a field of EPA spikes."
     />
 
-    <title>Chiefs Analytics Lab — Every Snap Has a Story</title>
+    <title>Chiefs Analytics Lab — Drive Waterfall</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -46,11 +46,16 @@
         </a>
 
         <div class="links">
-          <a class="links__active" href="index.html" aria-current="page">
-            Home
-          </a>
+          <a href="index.html">Home</a>
           <a href="explorer.html">Play Explorer</a>
           <a href="epa-post.html">EPA Explained</a>
+          <a
+            class="links__active"
+            href="waterfall.html"
+            aria-current="page"
+          >
+            Drive Waterfall
+          </a>
           <a href="#about">About</a>
         </div>
 
@@ -61,12 +66,76 @@
     </nav>
 
     <main id="main">
-      <div id="field"></div>
+      <section
+        class="waterfall-section section-pad"
+        aria-labelledby="waterfall-heading"
+      >
+        <div class="container">
+          <p class="section-kicker">05 / DRIVE WATERFALL</p>
 
-      <div id="modal" hidden>
-        <div id="modalContent"></div>
-        <button id="modalClose">Close</button>
-      </div>
+          <h1 id="waterfall-heading">DOWN THE FIELD.</h1>
+
+          <p class="waterfall-sub">
+            Drive 4 — Week 9 vs Jets, Q1–Q2
+          </p>
+
+          <dl class="waterfall-stats">
+            <div>
+              <dt>Plays</dt>
+              <dd>10</dd>
+            </div>
+            <div>
+              <dt>Yards</dt>
+              <dd>82</dd>
+            </div>
+            <div>
+              <dt>Result</dt>
+              <dd>Touchdown</dd>
+            </div>
+            <div>
+              <dt>Total EPA</dt>
+              <dd class="positive">+5.82</dd>
+            </div>
+            <div>
+              <dt>Success rate</dt>
+              <dd>7 of 10</dd>
+            </div>
+          </dl>
+
+          <p class="waterfall-note">
+            The drive nearly died at −1.07 EPA after two incompletions,
+            then Mahomes hit Kelce for 17 yards on 3rd &amp; 10 (+2.44) —
+            the biggest swing of the drive. Click a spike to inspect a
+            play.
+          </p>
+
+          <div
+            id="field"
+            role="img"
+            aria-label="Drive 4 against the Jets: EPA spikes for each of the 10 plays, rising above the line for positive plays and hanging below it for negative ones."
+          ></div>
+
+          <div class="field-scale" aria-hidden="true">
+            <span>KC 10</span>
+            <span>20</span>
+            <span>30</span>
+            <span>40</span>
+            <span>50</span>
+            <span>NYJ 40</span>
+            <span>30</span>
+            <span>20</span>
+            <span>10</span>
+            <span>Goal</span>
+          </div>
+
+          <div id="modal" hidden>
+            <div id="modalContent">
+              <div id="modalDetails"></div>
+              <button id="modalClose">Close</button>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- FOOTER -->
