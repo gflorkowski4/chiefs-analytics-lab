@@ -645,12 +645,12 @@
   background: #fa6d7e;
 }
 
-.explorer-page .success-yes {
+.explorer-page td.success-yes {
   color: #62d99a;
   font-weight: 800;
 }
 
-.explorer-page .success-no {
+.explorer-page td.success-no {
   color: #8e8997;
 }
 
