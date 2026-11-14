@@ -1546,6 +1546,37 @@ button {
 }
 
 /* ==========================================================
+   BREAKDOWNS CARD
+   ========================================================== */
+  #breakdownList{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .breakdown-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border, #2a2a32);
+}
+
+.breakdown-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.breakdown-item__title {
+  color: var(--text-heading);
+  font-weight: 600;
+}
+
+.breakdown-item__stat {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+/* ==========================================================
    12. RESPONSIVE DESIGN
    ========================================================== */
 

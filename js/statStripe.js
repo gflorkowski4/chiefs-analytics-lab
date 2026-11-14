@@ -517,6 +517,57 @@ function updatePulse(plays, week = latestWeek(plays, SEASON)) {
 }
 
 /* ==========================================================
+   The Breakdown card
+   ========================================================== */
+  const breakdowns = [
+  {
+    title: "What is EPA, Explained with Mahomes Plays",
+    stat: "+0.053 EPA/play over 1,392 plays",
+    href: "epa-post.html",
+  },
+  {
+    title: "What is Success Rate?",
+    stat: "49.0% in 2026",
+    href: "success-rate-post.html",
+  },
+  {
+    title: "Next up: CPOE",
+    stat: "Coming next in the series",
+    href: null,
+  },
+];
+
+function renderBreakdowns() {
+  const list = document.getElementById("breakdownList");
+
+  for (const post of breakdowns) {
+    const item = document.createElement("li");
+    item.classList.add("breakdown-item");
+
+    const title = document.createElement("span");
+    title.classList.add("breakdown-item__title");
+    title.textContent = post.title;
+    item.appendChild(title);
+
+    const stat = document.createElement("span");
+    stat.classList.add("breakdown-item__stat");
+    stat.textContent = post.stat;
+    item.appendChild(stat);
+
+    if (post.href) {
+      const link = document.createElement("a");
+      link.classList.add("card__link");
+      link.href = post.href;
+      link.textContent = "Read the breakdown ↗";
+      item.appendChild(link);
+    }
+
+    list.appendChild(item);
+  }
+}
+
+  
+/* ==========================================================
    12. ERROR HANDLING
    ========================================================== */
 
@@ -594,5 +645,5 @@ async function loadPlays() {
 }
 
 /* START APPLICATION */
-
+renderBreakdowns();
 loadPlays();
