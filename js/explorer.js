@@ -194,6 +194,10 @@ function sortedPlays(plays) {
     arr.sort((a, b) => a.epa - b.epa || a.id - b.id);
   } else if (sortFilter.value === "yards") {
     arr.sort((a, b) => b.yards - a.yards || a.id - b.id);
+  } else if (sortFilter.value === "success") {
+    arr.sort((a, b) => b.success - a.success || a.epa - b.epa);
+  } else {
+    arr.sort((a, b) => a.id - b.id);
   }
 
   return arr;
@@ -539,87 +543,7 @@ function setImpact(value) {
   });
 }
 
-/* 14. OPTIONAL SYNTHETIC PREVIEW DATA
 
-   Used only when the body has:
-   data-source="demo"
-
-   Production explorer.html uses:
-   data-source="production"
-*/
-
-function makeDemoData() {
-  const phrases = [
-    "Patrick Mahomes pass short middle to receiver for a first down",
-    "Patrick Mahomes pass deep right, complete for 28 yards",
-    "Hand-off up the middle, gain on first and ten",
-    "Pass incomplete on a deep sideline attempt",
-    "Run off left tackle for a short gain",
-    "Patrick Mahomes scrambles on third down",
-    "Pass short left, catch and run down the sideline",
-    "Sack on second down, loss of yardage",
-    "Rush up the middle on third and short",
-    "Play-action pass to the right for a touchdown",
-    "Pass across the middle, tackled shy of the marker",
-    "Outside zone run to the right",
-  ];
-
-  const data = [];
-
-  for (const [season, maxWeek] of [
-    [2024, 18],
-    [2025, 17],
-    [2026, 9],
-  ]) {
-    for (let w = 1; w <= maxWeek; w++) {
-      for (let i = 0; i < 19; i++) {
-        const pass = (i * 7 + w) % 10 < 7;
-
-        const swing = Math.sin(i * 2.17 + w * 0.91 + season * 0.15);
-
-        const epa =
-          (season === 2026 ? 0.11 : 0.03) +
-          0.73 * swing +
-          0.11 * Math.cos(w * 0.8);
-
-        data.push({
-          season,
-          season_type: "REG",
-          week: w,
-          down: 1 + (i % 4),
-          distance: 1 + ((i * 3 + w) % 15),
-          yardline: `KC ${10 + ((i * 7 + w) % 78)}`,
-          play_type: pass ? "pass" : "run",
-          yards: Math.round(4 + 15 * swing + 3 * Math.cos(i)),
-          epa,
-          success: Number((i * 7 + w) % 19 < 9),
-          desc: phrases[(i * 5 + w) % phrases.length],
-        });
-      }
-    }
-
-    /* Example playoff plays */
-    if (season !== 2026) {
-      for (let i = 0; i < 15; i++) {
-        data.push({
-          season,
-          season_type: "POST",
-          week: 19,
-          down: 1 + (i % 4),
-          distance: 1 + (i % 12),
-          yardline: `KC ${12 + i * 4}`,
-          play_type: i % 4 ? "pass" : "run",
-          yards: 5 + (i % 22),
-          epa: 0.25 * Math.sin(i * 1.8),
-          success: Number(i % 2 === 0),
-          desc: phrases[i % phrases.length],
-        });
-      }
-    }
-  }
-
-  return data;
-}
 
 /* 15. LOAD JSON AND INITIALIZE */
 
