@@ -1562,6 +1562,9 @@ button {
   border-bottom: 1px solid var(--border, #2a2a32);
 }
 
+.breakdown-item:first-child {
+  padding-top: 0;
+}
 .breakdown-item:last-child {
   border-bottom: none;
   padding-bottom: 0;
@@ -1575,6 +1578,64 @@ button {
 .breakdown-item__stat {
   color: var(--text-muted);
   font-size: 0.9rem;
+}
+/* ==========================================================
+   WATERFALL CHART
+   ========================================================== */
+
+#field {
+  position: relative;
+  height: 300px;
+}
+
+.spike {
+  position: absolute;
+  bottom: 0;
+  width: 12px;
+  background: var(--text-muted);
+}
+
+.spike--positive {
+  background: #4ecb7d;
+}
+
+.spike--negative {
+  background: #ff5f73;
+}
+
+#modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+}
+
+#modal[hidden] {
+  display: none;
+}
+
+#modalContent {
+  background: #1f1f26;
+  color: var(--text-primary);
+  padding: 1.5rem;
+  border-radius: 12px;
+  max-width: 28rem;
+  width: 90%;
+  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+#modalClose {
+  margin-top: 1rem;
+  background: var(--text-heading);
+  color: #17171c;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
 }
 /* ==========================================================
    12. RESPONSIVE DESIGN

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#141419" />
+    <meta
+      name="description"
+      content="Explore Kansas City Chiefs plays, expected points added, and the stories behind every snap."
+    />
+
+    <title>Chiefs Analytics Lab — Every Snap Has a Story</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="js/waterfall.js" defer></script>
+  </head>
+
+  <body data-mode="production">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- NAVIGATION -->
+    <nav class="site-nav" aria-label="Main navigation">
+      <div class="site-nav__inner">
+        <a
+          class="brand"
+          href="index.html"
+          aria-label="Chiefs Analytics Lab home"
+        >
+          <span class="brand__mark" aria-hidden="true">
+            KC
+            <span class="brand__mark-line"></span>
+          </span>
+
+          <span class="brand__text">
+            CHIEFS <strong>ANALYTICS LAB</strong>
+            <small>THE GAME, BY THE NUMBERS</small>
+          </span>
+        </a>
+
+        <div class="links">
+          <a class="links__active" href="index.html" aria-current="page">
+            Home
+          </a>
+          <a href="explorer.html">Play Explorer</a>
+          <a href="epa-post.html">EPA Explained</a>
+          <a href="#about">About</a>
+        </div>
+
+        <a class="site-nav__action" href="explorer.html">
+          Explore data <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </nav>
+
+    <main id="main">
+      <div id="field"></div>
+
+      <div id="modal" hidden>
+        <div id="modalContent"></div>
+        <button id="modalClose">Close</button>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <strong> CHIEFS <span>ANALYTICS LAB</span> </strong>
+
+          <p>Learning football analytics in public.</p>
+        </div>
+
+        <p>
+          Independent educational project · Not affiliated with the Kansas City
+          Chiefs or NFL.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
