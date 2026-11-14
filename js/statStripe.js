@@ -175,6 +175,11 @@ function playDescription(play) {
     let line = `${play.passer} ${play.play_type} to ${play.receiver} for ${play.yards} YDS` ;
     if (play.touchdown) {
       line += " TOUCHDOWN";
+    } if (play.sack) {
+      line = `${play.defteam} sacked ${play.passer} for ${play.yards} YDS`;
+    }
+    if (play.incomplete_pass) {
+      line = `${play.passer} ${play.play_type} incomplete`;
     }
     return line;
   }
